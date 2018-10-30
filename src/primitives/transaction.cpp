@@ -151,7 +151,7 @@ CAmount CTransaction::GetValueOut() const
     CAmount nValueOut = 0;
     for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it)
     {
-        // PIVX: previously MoneyRange() was called here. This has been replaced with negative check and boundary wrap check.
+        // MAG: previously MoneyRange() was called here. This has been replaced with negative check and boundary wrap check.
         if (it->nValue < 0)
             throw std::runtime_error("CTransaction::GetValueOut() : value out of range : less than 0");
 
@@ -165,7 +165,7 @@ CAmount CTransaction::GetValueOut() const
 
 CAmount CTransaction::GetZerocoinMinted() const
 {
-    for (const CTxOut txOut : vout) {
+    for (const CTxOut& txOut : vout) {
         if(!txOut.scriptPubKey.IsZerocoinMint())
             continue;
 
@@ -177,7 +177,7 @@ CAmount CTransaction::GetZerocoinMinted() const
 
 bool CTransaction::UsesUTXO(const COutPoint out)
 {
-    for (const CTxIn in : vin) {
+    for (const CTxIn& in : vin) {
         if (in.prevout == out)
             return true;
     }
@@ -200,7 +200,7 @@ CAmount CTransaction::GetZerocoinSpent() const
         return 0;
 
     CAmount nValueOut = 0;
-    for (const CTxIn txin : vin) {
+    for (const CTxIn& txin : vin) {
         if(!txin.scriptSig.IsZerocoinSpend())
             continue;
 
@@ -213,7 +213,7 @@ CAmount CTransaction::GetZerocoinSpent() const
 int CTransaction::GetZerocoinMintCount() const
 {
     int nCount = 0;
-    for (const CTxOut out : vout) {
+    for (const CTxOut& out : vout) {
         if (out.scriptPubKey.IsZerocoinMint())
             nCount++;
     }

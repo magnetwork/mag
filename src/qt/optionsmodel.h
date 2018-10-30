@@ -48,8 +48,9 @@ public:
         ZeromintPercentage,  // int
         ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
-        AnonymizePivxAmount, //int
+        AnonymizeMagAmount, //int
         ShowMasternodesTab,  // bool
+        ShowMerchantTab,    // bool
         Listen,              // bool
         StakeSplitThreshold, // int
         OptionIDRowCount,
@@ -100,7 +101,7 @@ signals:
     void zeromintEnableChanged(bool);
     void zeromintPercentageChanged(int);
     void preferredDenomChanged(int);
-    void anonymizePivxAmountChanged(int);
+    void anonymizeMagAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
 };

@@ -1,0 +1,26 @@
+[Unit]
+Description=MAG's distributed currency daemon
+After=network.target
+
+[Service]
+User=mag
+Group=mag
+
+Type=forking
+PIDFile=/var/lib/magd/magd.pid
+
+ExecStart=/usr/bin/magd -daemon -pid=/var/lib/magd/magd.pid \
+          -conf=/etc/mag/mag.conf -datadir=/var/lib/magd
+
+ExecStop=-/usr/bin/mag-cli -conf=/etc/mag/mag.conf \
+         -datadir=/var/lib/magd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

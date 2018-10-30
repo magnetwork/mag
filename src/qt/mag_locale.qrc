@@ -1,0 +1,36 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/mag_bg.qm</file>
+        <file alias="ca">locale/mag_ca.qm</file>
+        <file alias="cs">locale/mag_cs.qm</file>
+        <file alias="da">locale/mag_da.qm</file>
+        <file alias="de">locale/mag_de.qm</file>
+        <file alias="en">locale/mag_en.qm</file>
+        <file alias="en_US">locale/mag_en_US.qm</file>
+        <file alias="eo">locale/mag_eo.qm</file>
+        <file alias="es">locale/mag_es.qm</file>
+        <file alias="es_ES">locale/mag_es_ES.qm</file>
+        <file alias="fi">locale/mag_fi.qm</file>
+        <file alias="fr_FR">locale/mag_fr_FR.qm</file>
+        <file alias="hi_IN">locale/mag_hi_IN.qm</file>
+        <file alias="hr">locale/mag_hr.qm</file>
+        <file alias="hr_HR">locale/mag_hr_HR.qm</file>
+        <file alias="it">locale/mag_it.qm</file>
+        <file alias="ja">locale/mag_ja.qm</file>
+        <file alias="ko_KR">locale/mag_ko_KR.qm</file>
+        <file alias="lt_LT">locale/mag_lt_LT.qm</file>
+        <file alias="nl">locale/mag_nl.qm</file>
+        <file alias="pl">locale/mag_pl.qm</file>
+        <file alias="pt">locale/mag_pt.qm</file>
+        <file alias="pt_BR">locale/mag_pt_BR.qm</file>
+        <file alias="ro_RO">locale/mag_ro_RO.qm</file>
+        <file alias="ru">locale/mag_ru.qm</file>
+        <file alias="sk">locale/mag_sk.qm</file>
+        <file alias="sv">locale/mag_sv.qm</file>
+        <file alias="tr">locale/mag_tr.qm</file>
+        <file alias="uk">locale/mag_uk.qm</file>
+        <file alias="vi">locale/mag_vi.qm</file>
+        <file alias="zh_CN">locale/mag_zh_CN.qm</file>
+        <file alias="zh_TW">locale/mag_zh_TW.qm</file>
+    </qresource>
+</RCC>

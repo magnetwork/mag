@@ -1,9 +1,10 @@
 // Copyright (c) 2018 The PIVX developers
+// Copyright (c) 2018-present The MAG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef PIVX_ACCUMULATORCHECKPOINTS_JSON_H
-#define PIVX_ACCUMULATORCHECKPOINTS_JSON_H
+#ifndef MAG_ACCUMULATORCHECKPOINTS_JSON_H
+#define MAG_ACCUMULATORCHECKPOINTS_JSON_H
 
 #include <string>
 std::string GetMainCheckpoints() {
@@ -475,4 +476,4 @@ std::string GetRegTestCheckpoints() {
     return strRegTestCheckpoints;
 }
 
-#endif //PIVX_ACCUMULATORCHECKPOINTS_JSON_H
+#endif //MAG_ACCUMULATORCHECKPOINTS_JSON_H
