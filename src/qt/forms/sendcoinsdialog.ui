@@ -21,7 +21,7 @@
     <number>9</number>
    </property>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_Master" stretch="0,1">
+    <layout class="QVBoxLayout" name="verticalLayout_Master" stretch="0,0">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -139,7 +139,7 @@
          <height>0</height>
         </size>
        </property>
-       <layout class="QVBoxLayout" name="layout_BG" stretch="0,0,0,0">
+       <layout class="QVBoxLayout" name="layout_BG" stretch="0,0,0">
         <property name="leftMargin">
          <number>6</number>
         </property>
@@ -898,10 +898,10 @@
              <x>0</x>
              <y>0</y>
              <width>944</width>
-             <height>69</height>
+             <height>106</height>
             </rect>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1">
+           <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,0">
             <property name="leftMargin">
              <number>0</number>
             </property>
@@ -933,6 +933,137 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_Send">
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="sendButton">
+                 <property name="minimumSize">
+                  <size>
+                   <width>150</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="toolTip">
+                  <string>Confirm the send action</string>
+                 </property>
+                 <property name="text">
+                  <string>S&amp;end</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../mag.qrc">
+                   <normaloff>:/icons/send</normaloff>:/icons/send</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                 <property name="default">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <property name="spacing">
+                  <number>3</number>
+                 </property>
+                 <item>
+                  <widget class="QCheckBox" name="checkzMAG">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="text">
+                    <string>Anonymized MAG</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label">
+                   <property name="text">
+                    <string>Balance:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelBalance">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>IBeamCursor</cursorShape>
+                   </property>
+                   <property name="text">
+                    <string notr="true">123.456 MAG</string>
+                   </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="clearButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Clear all fields of the form.</string>
+                 </property>
+                 <property name="text">
+                  <string>Clear &amp;All</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../mag.qrc">
+                   <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="addButton">
+                 <property name="toolTip">
+                  <string>Send to multiple recipients at once</string>
+                 </property>
+                 <property name="text">
+                  <string>Add &amp;Recipient</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="../mag.qrc">
+                   <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
+                 </property>
+                 <property name="autoDefault">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -1034,16 +1165,6 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="labelSmartFeeNormal">
-                   <property name="text">
-                    <string>normal</string>
-                   </property>
-                   <property name="margin">
-                    <number>8</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QSlider" name="sliderSmartFee">
                    <property name="minimumSize">
                     <size>
@@ -1074,6 +1195,16 @@
                    </property>
                    <property name="tickPosition">
                     <enum>QSlider::NoTicks</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelSmartFeeNormal">
+                   <property name="text">
+                    <string>normal</string>
+                   </property>
+                   <property name="margin">
+                    <number>8</number>
                    </property>
                   </widget>
                  </item>
@@ -1618,137 +1749,6 @@
           </layout>
          </widget>
         </item>
-        <item>
-         <widget class="QFrame" name="frame_Send">
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <widget class="QPushButton" name="sendButton">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Confirm the send action</string>
-             </property>
-             <property name="text">
-              <string>S&amp;end</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../mag.qrc">
-               <normaloff>:/icons/send</normaloff>:/icons/send</iconset>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-             <property name="default">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="clearButton">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>Clear all fields of the form.</string>
-             </property>
-             <property name="text">
-              <string>Clear &amp;All</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../mag.qrc">
-               <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="addButton">
-             <property name="toolTip">
-              <string>Send to multiple recipients at once</string>
-             </property>
-             <property name="text">
-              <string>Add &amp;Recipient</string>
-             </property>
-             <property name="icon">
-              <iconset resource="../mag.qrc">
-               <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
-             </property>
-             <property name="autoDefault">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <property name="spacing">
-              <number>3</number>
-             </property>
-             <item>
-              <widget class="QCheckBox" name="checkzMAG">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Anonymized MAG</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="text">
-                <string>Balance:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="labelBalance">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="cursor">
-                <cursorShape>IBeamCursor</cursorShape>
-               </property>
-               <property name="text">
-                <string notr="true">123.456 MAG</string>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
        </layout>
       </widget>
      </item>
@@ -1774,7 +1774,7 @@
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="groupCustomFee"/>
   <buttongroup name="groupFee"/>
+  <buttongroup name="groupCustomFee"/>
  </buttongroups>
 </ui>
