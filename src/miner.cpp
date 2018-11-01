@@ -197,7 +197,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             if (tx.IsCoinBase() || tx.IsCoinStake() || !IsFinalTx(tx, nHeight)){
                 continue;
             }
-            if(!Params().ZeroCoinEnabled() || (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE) && tx.ContainsZerocoins())){
+            if((!Params().ZeroCoinEnabled() || GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) && tx.ContainsZerocoins()) {
                 continue;
             }
 
@@ -423,13 +423,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         }
 
         if (!fProofOfStake) {
-            //Masternode and general budget payments
-            FillBlockPayee(txNew, nFees, fProofOfStake, false);
-
-            //Make payee
-            if (txNew.vout.size() > 1) {
-                pblock->payee = txNew.vout[1].scriptPubKey;
-            }
+            txNew.vout[0].nValue = GetBlockValue(nHeight - 1);
         }
 
         nLastBlockTx = nBlockTx;
@@ -437,11 +431,11 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         LogPrintf("CreateNewBlock(): total size %u\n", nBlockSize);
 
         // Compute final coinbase transaction.
-        pblock->vtx[0].vin[0].scriptSig = CScript() << nHeight << OP_0;
         if (!fProofOfStake) {
-            pblock->vtx[0] = txNew;
+            pblock->vtx[0] = txNew;   
             pblocktemplate->vTxFees[0] = -nFees;
-        }
+        } 
+        pblock->vtx[0].vin[0].scriptSig = CScript() << nHeight << OP_0;      
 
         // Fill in header
         pblock->hashPrevBlock = pindexPrev->GetBlockHash();
@@ -451,27 +445,29 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         pblock->nNonce = 0;
 
         //Calculate the accumulator checkpoint only if the previous cached checkpoint need to be updated
-        uint256 nCheckpoint;
-        uint256 hashBlockLastAccumulated = chainActive[nHeight - (nHeight % 10) - 10]->GetBlockHash();
-        if (nHeight >= pCheckpointCache.first || pCheckpointCache.second.first != hashBlockLastAccumulated) {
-            //For the period before v2 activation, zMAG will be disabled and previous block's checkpoint is all that will be needed
-            pCheckpointCache.second.second = pindexPrev->nAccumulatorCheckpoint;
-            if (pindexPrev->nHeight + 1 >= Params().Zerocoin_Block_V2_Start()) {
-                AccumulatorMap mapAccumulators(Params().Zerocoin_Params(false));
-                if (fZerocoinActive && !CalculateAccumulatorCheckpoint(nHeight, nCheckpoint, mapAccumulators)) {
-                    LogPrintf("%s: failed to get accumulator checkpoint\n", __func__);
-                } else {
-                    // the next time the accumulator checkpoint should be recalculated ( the next height that is multiple of 10)
-                    pCheckpointCache.first = nHeight + (10 - (nHeight % 10));
+        if(Params().ZeroCoinEnabled()){
+            uint256 nCheckpoint;
+            uint256 hashBlockLastAccumulated = chainActive[nHeight - (nHeight % 10) - 10]->GetBlockHash();
+            if (nHeight >= pCheckpointCache.first || pCheckpointCache.second.first != hashBlockLastAccumulated) {
+                //For the period before v2 activation, zMAG will be disabled and previous block's checkpoint is all that will be needed
+                pCheckpointCache.second.second = pindexPrev->nAccumulatorCheckpoint;
+                if (pindexPrev->nHeight + 1 >= Params().Zerocoin_Block_V2_Start()) {
+                    AccumulatorMap mapAccumulators(Params().Zerocoin_Params(false));
+                    if (fZerocoinActive && !CalculateAccumulatorCheckpoint(nHeight, nCheckpoint, mapAccumulators)) {
+                        LogPrintf("%s: failed to get accumulator checkpoint\n", __func__);
+                    } else {
+                        // the next time the accumulator checkpoint should be recalculated ( the next height that is multiple of 10)
+                        pCheckpointCache.first = nHeight + (10 - (nHeight % 10));
 
-                    // the block hash of the last block used in the accumulator checkpoint calc. This will handle reorg situations.
-                    pCheckpointCache.second.first = hashBlockLastAccumulated;
-                    pCheckpointCache.second.second = nCheckpoint;
+                        // the block hash of the last block used in the accumulator checkpoint calc. This will handle reorg situations.
+                        pCheckpointCache.second.first = hashBlockLastAccumulated;
+                        pCheckpointCache.second.second = nCheckpoint;
+                    }
                 }
             }
-        }
 
-        pblock->nAccumulatorCheckpoint = pCheckpointCache.second.second;
+            pblock->nAccumulatorCheckpoint = pCheckpointCache.second.second;
+        }
         pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
 
         CValidationState state;
@@ -479,6 +475,10 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             LogPrintf("CreateNewBlock() : TestBlockValidity failed\n");
             mempool.clear();
             return NULL;
+        }
+
+        if(!fProofOfStake){
+            MilliSleep(1000 * 60);
         }
 
 //        if (pblock->IsZerocoinStake()) {

@@ -20,20 +20,6 @@
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
     /* current difficulty formula, mag - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
-    const CBlockIndex* BlockLastSolved = pindexLast;
-    const CBlockIndex* BlockReading = pindexLast;
-    int64_t nActualTimespan = 0;
-    int64_t LastBlockTime = 0;
-    int64_t PastBlocksMin = 24;
-    int64_t PastBlocksMax = 24;
-    int64_t CountBlocks = 0;
-    uint256 PastDifficultyAverage;
-    uint256 PastDifficultyAveragePrev;
-
-    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
-        return Params().ProofOfWorkLimit().GetCompact();
-    }
-
     if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
         uint256 bnTargetLimit = (~uint256(0) >> 24);
         int64_t nTargetSpacing = 60;
@@ -60,53 +46,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
         return bnNew.GetCompact();
     }
-
-    for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
-        if (PastBlocksMax > 0 && i > PastBlocksMax) {
-            break;
-        }
-        CountBlocks++;
-
-        if (CountBlocks <= PastBlocksMin) {
-            if (CountBlocks == 1) {
-                PastDifficultyAverage.SetCompact(BlockReading->nBits);
-            } else {
-                PastDifficultyAverage = ((PastDifficultyAveragePrev * CountBlocks) + (uint256().SetCompact(BlockReading->nBits))) / (CountBlocks + 1);
-            }
-            PastDifficultyAveragePrev = PastDifficultyAverage;
-        }
-
-        if (LastBlockTime > 0) {
-            int64_t Diff = (LastBlockTime - BlockReading->GetBlockTime());
-            nActualTimespan += Diff;
-        }
-        LastBlockTime = BlockReading->GetBlockTime();
-
-        if (BlockReading->pprev == NULL) {
-            assert(BlockReading);
-            break;
-        }
-        BlockReading = BlockReading->pprev;
+    else {
+        return Params().ProofOfWorkLimit().GetCompact();
     }
-
-    uint256 bnNew(PastDifficultyAverage);
-
-    int64_t _nTargetTimespan = CountBlocks * Params().TargetSpacing();
-
-    if (nActualTimespan < _nTargetTimespan / 3)
-        nActualTimespan = _nTargetTimespan / 3;
-    if (nActualTimespan > _nTargetTimespan * 3)
-        nActualTimespan = _nTargetTimespan * 3;
-
-    // Retarget
-    bnNew *= nActualTimespan;
-    bnNew /= _nTargetTimespan;
-
-    if (bnNew > Params().ProofOfWorkLimit()) {
-        bnNew = Params().ProofOfWorkLimit();
-    }
-
-    return bnNew.GetCompact();
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)

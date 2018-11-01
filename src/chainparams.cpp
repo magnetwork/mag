@@ -54,11 +54,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("00000f363f2a5d4ebfc93b3eff2a84ee77442247aa59946fa1d8b183a78fe63b"));
+    (0, uint256("0x00000d4ca0b20413a832a5011755f1adb74a37071e4f2ce6872b6eca5e9b05b0"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1540617434, // * UNIX timestamp of last checkpoint block
-    0,          // * total number of transactions between genesis and last checkpoint
+    1,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1000        // * estimated number of transactions per day after checkpoint
 };
@@ -115,7 +115,7 @@ public:
         pchMessageStart[3] = 0x6e;
         vAlertPubKey = ParseHex("04c4256145e9efdae5198532bb8007098db313907496619d610120bedc042437e3e2aaa410e816aeab8b84096b5d1ecf9f9d500775e8b5e0afa3c5208159e5d4d6");
         nDefaultPort = 17172;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // MAG starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0);
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
@@ -126,11 +126,16 @@ public:
         nTargetSpacing = 1 * 60;  // MAG: 1 minute
         nMaturity = 100;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 144000000 * COIN;
-
+   
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 1;
+        nLastPOWBlock = nMaturity + 1; // Start PoS/Staking when the first PoW coinbase has matured.
         nModifierUpdateBlock = 1;
+
+        nSwapAmount = 37000000 * COIN; // Amount of coins generated for the swap.
+        nSwapPoWBlocks = 10; // Number of PoW blocks used to generate the Swap amount.
+        nSwapCoinbaseValue = nSwapAmount / nSwapPoWBlocks; // The swap amount will be distributed uniformly through PoW coinbase.
+
+        nMaxMoneyOut = nSwapAmount;
 
         // Disabling zerocoin for now.
         nZerocoinStartHeight = std::numeric_limits<int>::max();
@@ -155,7 +160,7 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Forbes - Bitcoin Price Bulls Come Out Fighting Ahead Of 10 Year Anniversary";
+        const char* pszTimestamp = "Bitcoin is 10 years old today — here's a look back at its crazy history";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -166,24 +171,24 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1540617434;
+        genesis.nTime = 1540944000;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1980930;
+        genesis.nNonce = 504588;
 
         hashGenesisBlock = genesis.GetHash();
         string strHexHash = genesis.GetHash().GetHex();
         string strmerkle = genesis.hashMerkleRoot.GetHex();
         string test = genesis.ToString();
-        assert(hashGenesisBlock == uint256("0x00000f363f2a5d4ebfc93b3eff2a84ee77442247aa59946fa1d8b183a78fe63b"));
-        assert(genesis.hashMerkleRoot == uint256("0x19bd608f508ad3fdf83d7ab9648a03e395688e468e92d3f2ee46a683477a0f04"));
+        assert(hashGenesisBlock == uint256("0x00000d4ca0b20413a832a5011755f1adb74a37071e4f2ce6872b6eca5e9b05b0"));
+        assert(genesis.hashMerkleRoot == uint256("0x1fac46a8259c006995e62bbdd1682487d06b9795f80e28b3f22801374f84060d"));
 
         vSeeds.push_back(CDNSSeedData("magnetwork.io", "satoshi.magnetwork.io"));   // Primary DNS Seeder
         vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));     // Secondary DNS Seeder
         vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));         // Single node address
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 30);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // Start with 'G'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 15); // Start with '7'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 142); // start with 'z'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
@@ -248,22 +253,13 @@ public:
         pchMessageStart[3] = 0xf9;
         vAlertPubKey = ParseHex("04151707922e5f80ae1fa276cfe2c2d5ff4966f1c1940ba96cf18c452386326b8fe333e4189fb978ab21440a434532f7118322650b0df8f4edf9a46625d8442e64");
         nDefaultPort = 17174;
-        nEnforceBlockUpgradeMajority = 51;
-        nRejectBlockOutdatedMajority = 75;
-        nToCheckBlockUpgradeMajority = 100;
-        nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // MAG: 1 day
-        nTargetSpacing = 1 * 60;  // MAG: 1 minute
-        nLastPOWBlock = 1;
-        nMaturity = 15;
-        nMasternodeCountDrift = 4; 
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1540617435;
-        genesis.nNonce = 812862;
+        genesis.nTime = 1540944001;
+        genesis.nNonce = 104735;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000b645bc348ce4c47c371750cceda07774f932b2d34f347524b076efe317f"));
+        assert(hashGenesisBlock == uint256("0x00000a14264564b749b2d5572f337d2a9b33366b252d7741261fc3c922d4556f"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -271,9 +267,9 @@ public:
         vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));
         vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet mag addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet mag script addresses start with '8' or '9'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // Testnet mag addresses start with 'T'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);  // Testnet mag script addresses start with '5'
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 135);     // Testnet private keys start with 'w'
         // Testnet mag BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet mag BIP32 prvkeys start with 'DRKP'
@@ -328,13 +324,13 @@ public:
         nTargetTimespan = 24 * 60 * 60; // MAG: 1 day
         nTargetSpacing = 1 * 60;        // MAG: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1540617435;
-        genesis.nNonce = 812862;
+        genesis.nTime = 1540944002;
+        genesis.nNonce = 1547833;
 
         hashGenesisBlock = genesis.GetHash();
         string strHexHash = genesis.GetHash().GetHex();
         nDefaultPort = 51476;
-        assert(hashGenesisBlock == uint256("0x00000b645bc348ce4c47c371750cceda07774f932b2d34f347524b076efe317f"));
+        assert(hashGenesisBlock == uint256("0x000000d893aa0704951b40b262956c95a0f86dbe88eef5829b54ad7255dd6cbe"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

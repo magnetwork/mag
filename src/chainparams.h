@@ -115,6 +115,10 @@ public:
     int Zerocoin_HeaderVersion() const { return nZerocoinHeaderVersion; }
     int Zerocoin_RequiredStakeDepth() const { return nZerocoinRequiredStakeDepth; }
 
+    int64_t SwapAmount() const { return nSwapAmount; }
+    int64_t SwapPoWBlocks() const { return nSwapPoWBlocks; }
+    int64_t SwapCoinbaseValue() const { return nSwapCoinbaseValue; }
+
     /** Height or Time Based Activations **/
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
@@ -173,6 +177,9 @@ protected:
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
     std::string zerocoinModulus;
+    int64_t nSwapAmount;
+    int64_t nSwapPoWBlocks;
+    int64_t nSwapCoinbaseValue;
     int nMaxZerocoinSpendsPerTransaction;
     CAmount nMinZerocoinMintFee;
     CAmount nInvalidAmountFiltered;

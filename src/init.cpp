@@ -1671,7 +1671,7 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
         fVerifyingBlocks = false;
 
         //Inititalize zMAGWallet
-        uiInterface.InitMessage(_("Syncing zMAG wallet..."));
+        uiInterface.InitMessage(_("Syncing MAG wallet..."));
 
         bool fEnableZMagBackups = GetBoolArg("-backupzmag", true);
         pwalletMain->setZMagAutoBackups(fEnableZMagBackups);

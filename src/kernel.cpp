@@ -163,7 +163,7 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
         nStakeModifier = uint64_t("stakemodifier");
         return true;
     }
-
+    
     // First find current stake modifier and its generation block time
     // if it's not old enough, return the same stake modifier
     int64_t nModifierTime = 0;
