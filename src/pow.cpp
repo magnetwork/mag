@@ -19,35 +19,37 @@
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
-    /* current difficulty formula, mag - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
-    if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
-        uint256 bnTargetLimit = (~uint256(0) >> 24);
-        int64_t nTargetSpacing = 60;
-        int64_t nTargetTimespan = 60 * 40;
-
-        int64_t nActualSpacing = 0;
-        if (pindexLast->nHeight != 0)
-            nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
-
-        if (nActualSpacing < 0)
-            nActualSpacing = 1;
-
-        // ppcoin: target change every block
-        // ppcoin: retarget with exponential moving toward target spacing
-        uint256 bnNew;
-        bnNew.SetCompact(pindexLast->nBits);
-
-        int64_t nInterval = nTargetTimespan / nTargetSpacing;
-        bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
-        bnNew /= ((nInterval + 1) * nTargetSpacing);
-
-        if (bnNew <= 0 || bnNew > bnTargetLimit)
-            bnNew = bnTargetLimit;
-
-        return bnNew.GetCompact();
+    if (pindexLast->nHeight <= Params().LAST_POW_BLOCK()) {
+        return Params().ProofOfWorkLimit().GetCompact();
     }
     else {
-        return Params().ProofOfWorkLimit().GetCompact();
+        uint256 bnTargetLimit = (~uint256(0) >> 32);
+
+        if(!(pindexLast->IsProofOfStake() && pindexLast->pprev->IsProofOfStake())) {
+            return bnTargetLimit.GetCompact();
+        }
+        else {
+            int64_t nTargetSpacing = 60;
+            // We want a narrower retargeting window as we switch to POS
+            // then progressively widen out.
+            int64_t nTargetTimespan = 60 * std::min(40, (pindexLast->nHeight - Params().LAST_POW_BLOCK()) + 5);
+            int64_t diff = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
+            int64_t nActualSpacing = diff < 1 ? 1 : diff;
+
+            // ppcoin: target change every block
+            // ppcoin: retarget with exponential moving toward target spacing
+            uint256 bnNew;
+            bnNew.SetCompact(pindexLast->nBits);
+
+            int64_t nInterval = nTargetTimespan / nTargetSpacing;
+            bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+            bnNew /= ((nInterval + 1) * nTargetSpacing);
+
+            if (bnNew <= 0 || bnNew > bnTargetLimit)
+                bnNew = bnTargetLimit;
+
+            return bnNew.GetCompact();
+        }
     }
 }
 

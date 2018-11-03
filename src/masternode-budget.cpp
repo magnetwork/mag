@@ -913,47 +913,44 @@ std::string CBudgetManager::GetRequiredPaymentsString(int nBlockHeight)
 
 CAmount CBudgetManager::GetTotalBudget(int nHeight)
 {
-    if (chainActive.Tip() == NULL) return 0;
-
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        CAmount nSubsidy = 500 * COIN;
-        return ((nSubsidy / 100) * 10) * 146;
-    }
+    if (chainActive.Tip() == NULL || nHeight <= Params().LAST_POW_BLOCK()) return 0;
 
     //get block value and calculate from that
-    CAmount nSubsidy = 0;
-    if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
-        nSubsidy = 50 * COIN;
-    } else if (nHeight <= 302399 && nHeight > Params().LAST_POW_BLOCK()) {
-        nSubsidy = 50 * COIN;
-    } else if (nHeight <= 345599 && nHeight >= 302400) {
-        nSubsidy = 45 * COIN;
-    } else if (nHeight <= 388799 && nHeight >= 345600) {
-        nSubsidy = 40 * COIN;
-    } else if (nHeight <= 431999 && nHeight >= 388800) {
-        nSubsidy = 35 * COIN;
-    } else if (nHeight <= 475199 && nHeight >= 432000) {
-        nSubsidy = 30 * COIN;
-    } else if (nHeight <= 518399 && nHeight >= 475200) {
-        nSubsidy = 25 * COIN;
-    } else if (nHeight <= 561599 && nHeight >= 518400) {
-        nSubsidy = 20 * COIN;
-    } else if (nHeight <= 604799 && nHeight >= 561600) {
-        nSubsidy = 15 * COIN;
-    } else if (nHeight <= 647999 && nHeight >= 604800) {
-        nSubsidy = 10 * COIN;
-    } else if (nHeight >= Params().Zerocoin_Block_V2_Start()) {
-        nSubsidy = 10 * COIN;
-    } else {
-        nSubsidy = 5 * COIN;
+    CAmount nSubsidy = 0;   
+    if (nHeight <= 86400) {
+        nSubsidy = 35 * COIN;       // 3024000 coins minted.
+    }
+    else if (nHeight <= 172800) {
+        nSubsidy = 30 * COIN;       // 2592000 coins minted.
+    }
+    else if (nHeight <= 216000) {
+        nSubsidy = 25 * COIN;       // 1080000 coins minted.
+    }
+    else if (nHeight <= 259200) {
+        nSubsidy = 20 * COIN;       // 864000 coins minted.
+    }
+    else if (nHeight <= 302400) {
+        nSubsidy = 17.5 * COIN;     // 756000 coins minted.
+    }
+    else if (nHeight <= 345600) {
+        nSubsidy = 15 * COIN;       // 648000 coins minted.
+    }
+    else if (nHeight <= 388800) {
+        nSubsidy = 12.5 * COIN;     // 540000 coins minted.
+    }
+    else if (nHeight <= 432000) {
+        nSubsidy = 10 * COIN;       // 432000 coins minted.
+    }
+    else if (nHeight <= 475200) {
+        nSubsidy = 7.5 * COIN;      // 324000 coins minted.
+    }
+    else {
+        // 7200 COINS / day.
+        nSubsidy = 5 * COIN;        // Infinite.
     }
 
     // Amount of blocks in a months period of time (using 1 minutes per) = (60*24*30)
-    if (nHeight <= 172800) {
-        return 648000 * COIN;
-    } else {
-        return ((nSubsidy / 100) * 10) * 1440 * 30;
-    }
+    return ((nSubsidy / 100) * 10) * 1440 * 30;
 }
 
 void CBudgetManager::NewBlock()

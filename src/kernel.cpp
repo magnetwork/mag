@@ -289,7 +289,7 @@ bool CheckStake(const CDataStream& ssUniqueID, CAmount nValueIn, const uint64_t 
 {
     CDataStream ss(SER_GETHASH, 0);
     ss << nStakeModifier << nTimeBlockFrom << ssUniqueID << nTimeTx;
-    hashProofOfStake = Hash(ss.begin(), ss.end());
+    hashProofOfStake = HashX11(ss.begin(), ss.end());
     //LogPrintf("%s: modifier:%d nTimeBlockFrom:%d nTimeTx:%d hash:%s\n", __func__, nStakeModifier, nTimeBlockFrom, nTimeTx, hashProofOfStake.GetHex());
 
     return stakeTargetHit(hashProofOfStake, nValueIn, bnTarget);
