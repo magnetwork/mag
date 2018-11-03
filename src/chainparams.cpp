@@ -115,7 +115,7 @@ public:
         pchMessageStart[3] = 0x6e;
         vAlertPubKey = ParseHex("04c4256145e9efdae5198532bb8007098db313907496619d610120bedc042437e3e2aaa410e816aeab8b84096b5d1ecf9f9d500775e8b5e0afa3c5208159e5d4d6");
         nDefaultPort = 17172;
-        bnProofOfWorkLimit = ~uint256(0);
+        bnProofOfWorkLimit = (~uint256(0) >> 6);
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
@@ -184,9 +184,9 @@ public:
 
         vSeeds.push_back(CDNSSeedData("magnetwork.io", "satoshi.magnetwork.io"));   // Primary DNS Seeder
         vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));     // Secondary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));         // Single node address
+        vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));         // MAG_TODO
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // Start with 'G'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38); // Start with 'G'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 15); // Start with '7'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 142); // start with 'z'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
@@ -209,8 +209,8 @@ public:
         nPoolMaxTransactions = 3;
         strSporkKey = "041CCB8077B33E32AFCCA6431204FADEF954D2FF3BD92F860DAF6C863B5D5912FCB7930766E7945B94689166FAB6FFBE332F3912807884810DBC7762E33EE4D296";
         strSporkKeyOld = "041CCB8077B33E32AFCCA6431204FADEF954D2FF3BD92F860DAF6C863B5D5912FCB7930766E7945B94689166FAB6FFBE332F3912807884810DBC7762E33EE4D296";
-        strObfuscationPoolDummyAddress = "D87q2gC9j6nNrnzCsg4aY6bHMLsT9nUhEw";
-        nStartMasternodePayments = 1540618633; //Sat, 27 Oct 2018 05:37:13
+        strObfuscationPoolDummyAddress = "GSkW1Z9n94rdjfHd1VWVXfDgcDkMXhYNWr";
+        nStartMasternodePayments = genesis.nTime;
 
         /** Zerocoin */
         zerocoinModulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -219,6 +219,7 @@ public:
             "7259085141865462043576798423387184774447920739934236584823824281198163815010674810451660377306056201619676256133"
             "8441436038339044149526344321901146575444541784240209246165157233507787077498171257724679629263863563732899121548"
             "31438167899885040445364023527381951378636564391212010397122822120720357";
+
         nMaxZerocoinSpendsPerTransaction = 7; // Assume about 20kb each
         nMinZerocoinMintFee = 1 * CENT; //high fee required for zerocoin mints
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
@@ -265,7 +266,7 @@ public:
         vSeeds.clear();
         vSeeds.push_back(CDNSSeedData("magnetwork.io", "satoshi.magnetwork.io"));
         vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));
-        vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
+        vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110")); // MAG_TODO
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // Testnet mag addresses start with 'T'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);  // Testnet mag script addresses start with '5'
@@ -289,8 +290,8 @@ public:
         nPoolMaxTransactions = 2;
         strSporkKey = "04EB6C844D57E3B5D7785F52BE0D6511644E1CC96B693BA3AECE4984BBC7D3F5668E927AEA19EDDC2EAE0389702CABDD31C3EF1D9A5A443350488762BC1F8E28D2";
         strSporkKeyOld = "04EB6C844D57E3B5D7785F52BE0D6511644E1CC96B693BA3AECE4984BBC7D3F5668E927AEA19EDDC2EAE0389702CABDD31C3EF1D9A5A443350488762BC1F8E28D2";
-        strObfuscationPoolDummyAddress = "y57cqfGRkekRyDRNeJiLtYVEbvhXrNbmox";
-        nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
+        strObfuscationPoolDummyAddress = "TSegSsewERsEduCNCNnenuNDU2tYNrAj8Y";
+        nStartMasternodePayments = genesis.nTime;
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                        // here because we only have a 8 block finalization window on testnet
     }
