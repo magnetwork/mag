@@ -1765,8 +1765,39 @@ int64_t GetBlockValue(int nHeight)
         else {
             nSubsidy = 100 * COIN; // Initial MAG chain coinbase value after 1st halving.
         }
-    } else {
-        nSubsidy = 5 * COIN; // MAG_TODO!
+    } 
+    else {      
+        if (nHeight <= 86400) {
+            nSubsidy = 35 * COIN;       // 3024000 coins minted.
+        }
+        else if (nHeight <= 172800) {
+            nSubsidy = 30 * COIN;       // 2592000 coins minted.
+        }
+        else if (nHeight <= 216000) {
+            nSubsidy = 25 * COIN;       // 1080000 coins minted.
+        }
+        else if (nHeight <= 259200) {
+            nSubsidy = 20 * COIN;       // 864000 coins minted.
+        }
+        else if (nHeight <= 302400) {
+            nSubsidy = 17.5 * COIN;     // 756000 coins minted.
+        }
+        else if (nHeight <= 345600) {
+            nSubsidy = 15 * COIN;       // 648000 coins minted.
+        }
+        else if (nHeight <= 388800) {
+            nSubsidy = 12.5 * COIN;     // 540000 coins minted.
+        }
+        else if (nHeight <= 432000) {
+            nSubsidy = 10 * COIN;       // 432000 coins minted.
+        }
+        else if (nHeight <= 475200) {
+            nSubsidy = 7.5 * COIN;      // 324000 coins minted.
+        }
+        else {
+            // 7200 COINS / day.
+            nSubsidy = 5 * COIN;        // Infinite.
+        }
     }
     return nSubsidy;
 }
@@ -2009,29 +2040,9 @@ CAmount GetSeeSaw(const CAmount& blockValue, int nMasternodeCount, int nHeight)
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZMAGStake)
 {
     int64_t ret = 0;
-
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 200)
-            return 0;
-    }
-
-    if (nHeight <= 43200) {
-        ret = blockValue / 5;
-    } else if (nHeight < 86400 && nHeight > 43200) {
-        ret = blockValue / (100 / 30);
-    } else if (nHeight < (Params().NetworkID() == CBaseChainParams::TESTNET ? 145000 : 151200) && nHeight >= 86400) {
-        ret = 50 * COIN;
-    } else if (nHeight <= Params().LAST_POW_BLOCK() && nHeight >= 151200) {
+    if (nHeight > Params().LAST_POW_BLOCK()) {
         ret = blockValue / 2;
-    } else if (nHeight < Params().Zerocoin_Block_V2_Start()) {
-        return GetSeeSaw(blockValue, nMasternodeCount, nHeight);
-    } else {
-        //When zMAG is staked, masternode only gets 2 MAG
-        ret = 3 * COIN;
-        if (isZMAGStake)
-            ret = 2 * COIN;
     }
-
     return ret;
 }
 
@@ -4096,17 +4107,6 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().ToString().c_str());
 
     unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, &block);
-
-    if (block.IsProofOfWork() && (pindexPrev->nHeight + 1 <= 68589)) {
-        double n1 = ConvertBitsToDouble(block.nBits);
-        double n2 = ConvertBitsToDouble(nBitsRequired);
-
-        if (abs(n1 - n2) > n1 * 0.5)
-            return error("%s : incorrect proof of work (DGW pre-fork) - %f %f %f at %d", __func__, abs(n1 - n2), n1, n2, pindexPrev->nHeight + 1);
-
-        return true;
-    }
-
     if (block.nBits != nBitsRequired)
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
 

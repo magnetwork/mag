@@ -478,7 +478,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         }
 
         if(!fProofOfStake){
-            MilliSleep(1000 * 60);
+         //  MilliSleep(1000 * 60);
         }
 
 //        if (pblock->IsZerocoinStake()) {
@@ -595,7 +595,8 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || (pwallet->GetBalance() > 0 && nReserveBalance >= pwallet->GetBalance())) {
+            while (vNodes.empty() || pwallet->IsLocked() || !fMintableCoins || (pwallet->GetBalance() > 0 && nReserveBalance >= pwallet->GetBalance())
+            || (!masternodeSync.IsSynced() && chainActive.Tip()->nHeight > Params().COINBASE_MATURITY() * 5)) {
                 nLastCoinStakeSearchInterval = 0;
                 // Do a separate 1 minute check here to ensure fMintableCoins is updated
                 if (!fMintableCoins) {
