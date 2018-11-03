@@ -113,7 +113,7 @@ public:
         pchMessageStart[1] = 0xee;
         pchMessageStart[2] = 0x2c;
         pchMessageStart[3] = 0x6e;
-        vAlertPubKey = ParseHex("04c4256145e9efdae5198532bb8007098db313907496619d610120bedc042437e3e2aaa410e816aeab8b84096b5d1ecf9f9d500775e8b5e0afa3c5208159e5d4d6");
+        vAlertPubKey = ParseHex("0457cbd0e4325dbcdf526f4b27d459383b7ddca9bb4bdfa61ada823a3f8522b6f9c7afbc4375f51ed22989de3eced8612dd99f110936fe313938d22b5f838c775a");
         nDefaultPort = 17172;
         bnProofOfWorkLimit = (~uint256(0) >> 6);
         nSubsidyHalvingInterval = 210000;
@@ -207,8 +207,8 @@ public:
         fZeroCoinEnabled = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "041CCB8077B33E32AFCCA6431204FADEF954D2FF3BD92F860DAF6C863B5D5912FCB7930766E7945B94689166FAB6FFBE332F3912807884810DBC7762E33EE4D296";
-        strSporkKeyOld = "041CCB8077B33E32AFCCA6431204FADEF954D2FF3BD92F860DAF6C863B5D5912FCB7930766E7945B94689166FAB6FFBE332F3912807884810DBC7762E33EE4D296";
+        strSporkKey = "043306b8b174192b112b453536cc899e862351b8b408640de8a150876447c9a62eb7f4125ae9ecd965f45ecf2e5bb259e32fcf7cec84cedbb3fb67ecdab15a2081";
+        strSporkKeyOld = "043306b8b174192b112b453536cc899e862351b8b408640de8a150876447c9a62eb7f4125ae9ecd965f45ecf2e5bb259e32fcf7cec84cedbb3fb67ecdab15a2081";
         strObfuscationPoolDummyAddress = "GSkW1Z9n94rdjfHd1VWVXfDgcDkMXhYNWr";
         nStartMasternodePayments = genesis.nTime;
 
@@ -252,7 +252,7 @@ public:
         pchMessageStart[1] = 0xb7;
         pchMessageStart[2] = 0xdc;
         pchMessageStart[3] = 0xf9;
-        vAlertPubKey = ParseHex("04151707922e5f80ae1fa276cfe2c2d5ff4966f1c1940ba96cf18c452386326b8fe333e4189fb978ab21440a434532f7118322650b0df8f4edf9a46625d8442e64");
+        vAlertPubKey = ParseHex("042abb9fbdbdad29ed411ffc04c465f3f3a0e0f0ae183b4777886f771bdc143481eb0ad3c5fb67ecbcd0568f5f602039fde73015975d998f242d7fe5c3d2a059ce");
         nDefaultPort = 17174;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
@@ -288,8 +288,8 @@ public:
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 2;
-        strSporkKey = "04EB6C844D57E3B5D7785F52BE0D6511644E1CC96B693BA3AECE4984BBC7D3F5668E927AEA19EDDC2EAE0389702CABDD31C3EF1D9A5A443350488762BC1F8E28D2";
-        strSporkKeyOld = "04EB6C844D57E3B5D7785F52BE0D6511644E1CC96B693BA3AECE4984BBC7D3F5668E927AEA19EDDC2EAE0389702CABDD31C3EF1D9A5A443350488762BC1F8E28D2";
+        strSporkKey = "045b8dc72b3429ef0ab12d80c26bb1025d2eee81abe3f284face90df0cdd341b1ab0b28d3741d6fb876c33b4355b9d4b15e1747c805b2416d0016c9546e9094f03";
+        strSporkKeyOld = "045b8dc72b3429ef0ab12d80c26bb1025d2eee81abe3f284face90df0cdd341b1ab0b28d3741d6fb876c33b4355b9d4b15e1747c805b2416d0016c9546e9094f03";
         strObfuscationPoolDummyAddress = "TSegSsewERsEduCNCNnenuNDU2tYNrAj8Y";
         nStartMasternodePayments = genesis.nTime;
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
