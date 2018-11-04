@@ -111,6 +111,12 @@ CScript COINBASE_FLAGS;
 
 const string strMessageMagic = "DarkNet Signed Message:\n";
 
+// Constants for coinbase value.
+// Credit @PtSm (Discord)
+static const int HalvingMonths = 12;
+static const int64_t RewardDecrease = 50 * CENT;
+static const int64_t FirstYearRewardMultiplier[HalvingMonths] = { 35 * COIN, 35 * COIN, 30 * COIN, 30 * COIN, 25 * COIN, 20 * COIN, 17 * COIN + 50 * CENT, 15 * COIN, 12 * COIN + 50 * CENT, 10 * COIN, 7 * COIN + 50 * CENT, 5 * COIN + 50 * CENT };
+
 // Internal stuff
 namespace
 {
@@ -1765,41 +1771,17 @@ int64_t GetBlockValue(int nHeight)
         else {
             nSubsidy = 100 * COIN; // Initial MAG chain coinbase value after 1st halving.
         }
+
+        return nSubsidy;
     } 
     else {      
-        if (nHeight <= 86400) {
-            nSubsidy = 35 * COIN;       // 3024000 coins minted.
-        }
-        else if (nHeight <= 172800) {
-            nSubsidy = 30 * COIN;       // 2592000 coins minted.
-        }
-        else if (nHeight <= 216000) {
-            nSubsidy = 25 * COIN;       // 1080000 coins minted.
-        }
-        else if (nHeight <= 259200) {
-            nSubsidy = 20 * COIN;       // 864000 coins minted.
-        }
-        else if (nHeight <= 302400) {
-            nSubsidy = 17.5 * COIN;     // 756000 coins minted.
-        }
-        else if (nHeight <= 345600) {
-            nSubsidy = 15 * COIN;       // 648000 coins minted.
-        }
-        else if (nHeight <= 388800) {
-            nSubsidy = 12.5 * COIN;     // 540000 coins minted.
-        }
-        else if (nHeight <= 432000) {
-            nSubsidy = 10 * COIN;       // 432000 coins minted.
-        }
-        else if (nHeight <= 475200) {
-            nSubsidy = 7.5 * COIN;      // 324000 coins minted.
-        }
-        else {
-            // 7200 COINS / day.
-            nSubsidy = 5 * COIN;        // Infinite.
-        }
-    }
-    return nSubsidy;
+        const int currentPeriod = nHeight / 43800; // ((365 * 24 * 60) / 12)
+        int64_t nSubsidy = (currentPeriod < HalvingMonths) ?
+            FirstYearRewardMultiplier[currentPeriod] :
+            FirstYearRewardMultiplier[HalvingMonths - 1] - RewardDecrease * int64_t(currentPeriod / HalvingMonths);
+
+        return std::max<int64_t>(nSubsidy, RewardDecrease);
+    }    
 }
 
 CAmount GetSeeSaw(const CAmount& blockValue, int nMasternodeCount, int nHeight)
