@@ -126,14 +126,17 @@ public:
         nTargetSpacing = 1 * 60;  // MAG: 1 minute
         nMaturity = 100;
         nMasternodeCountDrift = 20;
-   
-        /** Height or Time Based Activations **/
-        nLastPOWBlock = nMaturity + 1; // Start PoS/Staking when the first PoW coinbase has matured.
-        nModifierUpdateBlock = 1;
 
         nSwapAmount = 37000000 * COIN; // Amount of coins generated for the swap.
         nSwapPoWBlocks = 10; // Number of PoW blocks used to generate the Swap amount.
         nSwapCoinbaseValue = nSwapAmount / nSwapPoWBlocks; // The swap amount will be distributed uniformly through PoW coinbase.
+   
+        /** Height or Time Based Activations **/
+
+        // Start PoS/Staking when the PoW coinbase has completed a confirmation cycle.
+        // Excluding Swap blocks.
+        nLastPOWBlock = nMaturity * 2 + nSwapPoWBlocks + 1;                                                        
+        nModifierUpdateBlock = 1;
 
         nMaxMoneyOut = nSwapAmount;
 
