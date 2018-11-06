@@ -127,7 +127,10 @@ public:
         nMaturity = 100;
         nMasternodeCountDrift = 20;
 
-        nSwapAmount = 37000000 * COIN; // Amount of coins generated for the swap.
+        // The mainnet swap amount of 37334000 was determined based on money supply 36757502.29915683 MAG @ block 416959.
+        // 576500 MAG were added to this amount to represent the expected POW production at a rate of 960 blocks/day 
+        // with 100 MAG reward for 6 days along with POS production at 7% per stake.
+        nSwapAmount = 37334000 * COIN; // Amount of coins generated for the swap.
         nSwapPoWBlocks = 10; // Number of PoW blocks used to generate the Swap amount.
         nSwapCoinbaseValue = nSwapAmount / nSwapPoWBlocks; // The swap amount will be distributed uniformly through PoW coinbase.
    
@@ -257,6 +260,10 @@ public:
         pchMessageStart[3] = 0xf9;
         vAlertPubKey = ParseHex("042abb9fbdbdad29ed411ffc04c465f3f3a0e0f0ae183b4777886f771bdc143481eb0ad3c5fb67ecbcd0568f5f602039fde73015975d998f242d7fe5c3d2a059ce");
         nDefaultPort = 17174;
+
+        nSwapAmount = 37000000 * COIN; // Amount of coins generated for the swap.
+        nSwapPoWBlocks = 10; // Number of PoW blocks used to generate the Swap amount.
+        nSwapCoinbaseValue = nSwapAmount / nSwapPoWBlocks; // The swap amount will be distributed uniformly through PoW coinbase.
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1540944001;
