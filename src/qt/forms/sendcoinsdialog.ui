@@ -1165,6 +1165,16 @@
                   </widget>
                  </item>
                  <item>
+                  <widget class="QLabel" name="labelSmartFeeNormal">
+                   <property name="text">
+                    <string>normal</string>
+                   </property>
+                   <property name="margin">
+                    <number>8</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QSlider" name="sliderSmartFee">
                    <property name="minimumSize">
                     <size>
@@ -1195,16 +1205,6 @@
                    </property>
                    <property name="tickPosition">
                     <enum>QSlider::NoTicks</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="labelSmartFeeNormal">
-                   <property name="text">
-                    <string>normal</string>
-                   </property>
-                   <property name="margin">
-                    <number>8</number>
                    </property>
                   </widget>
                  </item>
