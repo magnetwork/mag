@@ -1645,6 +1645,35 @@ CAmount CWallet::GetBalance() const
     return nTotal;
 }
 
+CAmount CWallet::GetEarnings(bool fMasternodeOnly) const
+{
+    CAmount nTotal = 0;
+    {
+        LOCK2(cs_main, cs_wallet);
+        for (map<uint256, CWalletTx>::const_iterator it = mapWallet.begin(); it != mapWallet.end(); ++it) {
+            const CWalletTx* pcoin = &(*it).second;
+
+            if (/*pcoin->IsTrusted() &&*/ pcoin->IsCoinStake()) {
+                if (isminetype mine = IsMine(pcoin->vout[1])) {
+                    if(!fMasternodeOnly && !(mine & ISMINE_WATCH_ONLY)) {
+                        CAmount credit = pcoin->GetCredit(ISMINE_ALL);
+                        CAmount debit = pcoin->GetDebit(ISMINE_ALL);
+                        nTotal += credit - debit;
+                    }
+                } else {
+                    CTxDestination destMN;
+                    int nIndexMN = pcoin->vout.size() - 1;
+                    if (ExtractDestination(pcoin->vout[nIndexMN].scriptPubKey, destMN) && ::IsMine(*this, destMN)) {
+                        nTotal += pcoin->vout[nIndexMN].nValue;
+                    }
+                }
+            }                
+        }
+    }
+
+    return nTotal;
+}
+
 std::map<libzerocoin::CoinDenomination, int> mapMintMaturity;
 int nLastMaturityCheck = 0;
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const

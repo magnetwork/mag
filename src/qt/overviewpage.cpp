@@ -114,6 +114,9 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
                                               currentWatchOnlyBalance(-1),
                                               currentWatchUnconfBalance(-1),
                                               currentWatchImmatureBalance(-1),
+                                              currentEarnings(-1),
+                                              currentMasternodeEarnings(-1),
+                                              currentStakeEarnings(-1),
                                               txdelegate(new TxViewDelegate()),
                                               filter(0)
 {
@@ -173,7 +176,8 @@ void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBala
 
 void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
                               const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance,
-                              const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
+                              const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance,
+                              const CAmount& earnings, const CAmount& masternodeEarnings, const CAmount& stakeEarnings)
 {
     currentBalance = balance;
     currentUnconfirmedBalance = unconfirmedBalance;
@@ -184,6 +188,10 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
+
+    currentEarnings = earnings;
+    currentMasternodeEarnings = masternodeEarnings;
+    currentStakeEarnings = stakeEarnings;
 
     CAmount nLockedBalance = 0;
     CAmount nWatchOnlyLockedBalance = 0;
@@ -226,19 +234,14 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelWatchLocked->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nWatchOnlyLockedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
-    // zMAG labels
-    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
-    ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
-
     // Combined labels
     ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
     ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
 
-    // Percentage labels
-    ui->labelMAGPercent->setText(sPercentage);
-    ui->labelzMAGPercent->setText(szPercentage);
+    // Earnings labels
+    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, earnings, false, BitcoinUnits::separatorAlways));
+    ui->labelMasternodeRewards->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, masternodeEarnings, false, BitcoinUnits::separatorAlways));
+    ui->labelStakeRewards->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, stakeEarnings, false, BitcoinUnits::separatorAlways));
 
     // Adjust bubble-help according to AutoMint settings
     QString automintHelp = tr("Current percentage of zMAG.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
@@ -290,21 +293,16 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     ui->labelLockedBalance->setVisible(showMAGLocked || showWatchOnlyMAGLocked);
     ui->labelWatchLocked->setVisible(showWatchOnlyMAGLocked && showWatchOnly);
 
-    // zMAG
-    bool showzMAGAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
-    bool showzMAGUnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
-    bool showzMAGImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
-    ui->labelzBalanceMature->setVisible(showzMAGAvailable);
-    ui->labelzBalanceMatureText->setVisible(showzMAGAvailable);
-    ui->labelzBalanceUnconfirmed->setVisible(showzMAGUnconfirmed);
-    ui->labelzBalanceUnconfirmedText->setVisible(showzMAGUnconfirmed);
-    ui->labelzBalanceImmature->setVisible(showzMAGImmature);
-    ui->labelzBalanceImmatureText->setVisible(showzMAGImmature);
+    // Masternode and Stake Earnings.
+    ui->labelStakeRewards->setVisible(true);
+    ui->labelStakeRewardsText->setVisible(true);
+    ui->labelMasternodeRewards->setVisible(true);
+    ui->labelMasternodeRewardsText->setVisible(true);
 
     // Percent split
-    bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
-    ui->labelMAGPercent->setVisible(showPercentages);
-    ui->labelzMAGPercent->setVisible(showPercentages);
+    //bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
+    ui->labelMAGPercent->setVisible(false);
+    ui->labelzMAGPercent->setVisible(false);
 
     static int cachedTxLocks = 0;
 
@@ -364,9 +362,10 @@ void OverviewPage::setWalletModel(WalletModel* model)
         // Keep up to date with wallet
         setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(),
                    model->getZerocoinBalance(), model->getUnconfirmedZerocoinBalance(), model->getImmatureZerocoinBalance(),
-                   model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
-        connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this,
-                         SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
+                   model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance(),
+                   model->getEarnings(), model->getMasternodeEarnings(), model->getStakeEarnings());
+        connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this,
+                         SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
 
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
         connect(model->getOptionsModel(), SIGNAL(hideZeroBalancesChanged(bool)), this, SLOT(updateDisplayUnit()));
@@ -385,7 +384,8 @@ void OverviewPage::updateDisplayUnit()
         nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
         if (currentBalance != -1)
             setBalance(currentBalance, currentUnconfirmedBalance, currentImmatureBalance, currentZerocoinBalance, currentUnconfirmedZerocoinBalance, currentimmatureZerocoinBalance,
-                currentWatchOnlyBalance, currentWatchUnconfBalance, currentWatchImmatureBalance);
+                currentWatchOnlyBalance, currentWatchUnconfBalance, currentWatchImmatureBalance,
+                currentEarnings, currentMasternodeEarnings, currentStakeEarnings);
 
         // Update txdelegate->unit with the current unit
         txdelegate->unit = nDisplayUnit;

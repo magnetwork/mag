@@ -33,6 +33,7 @@ WalletModel::WalletModel(CWallet* wallet, OptionsModel* optionsModel, QObject* p
                                                                                          recentRequestsTableModel(0),
                                                                                          cachedBalance(0), cachedUnconfirmedBalance(0), cachedImmatureBalance(0),
                                                                                          cachedZerocoinBalance(0), cachedUnconfirmedZerocoinBalance(0), cachedImmatureZerocoinBalance(0),
+                                                                                         cachedEarnings(0), cachedMasternodeEarnings(0), cachedStakeEarnings(0),
                                                                                          cachedEncryptionStatus(Unencrypted),
                                                                                          cachedNumBlocks(0)
 {
@@ -71,6 +72,21 @@ CAmount WalletModel::getBalance(const CCoinControl* coinControl) const
     }
 
     return wallet->GetBalance();
+}
+
+CAmount WalletModel::getStakeEarnings() const
+{
+    return wallet->GetEarnings(false) - wallet->GetEarnings(true);
+}
+
+CAmount WalletModel::getMasternodeEarnings() const
+{
+    return wallet->GetEarnings(true);
+}
+
+CAmount WalletModel::getEarnings() const
+{
+    return wallet->GetEarnings(false);
 }
 
 CAmount WalletModel::getUnconfirmedBalance() const
@@ -166,7 +182,8 @@ void WalletModel::emitBalanceChanged()
     // Force update of UI elements even when no values have changed
     emit balanceChanged(cachedBalance, cachedUnconfirmedBalance, cachedImmatureBalance, 
                         cachedZerocoinBalance, cachedUnconfirmedZerocoinBalance, cachedImmatureZerocoinBalance,
-                        cachedWatchOnlyBalance, cachedWatchUnconfBalance, cachedWatchImmatureBalance);
+                        cachedWatchOnlyBalance, cachedWatchUnconfBalance, cachedWatchImmatureBalance,
+                            cachedEarnings, cachedMasternodeEarnings, cachedStakeEarnings);
 }
 
 void WalletModel::checkBalanceChanged()
@@ -180,6 +197,9 @@ void WalletModel::checkBalanceChanged()
     CAmount newZerocoinBalance = getZerocoinBalance();
     CAmount newUnconfirmedZerocoinBalance = getUnconfirmedZerocoinBalance();
     CAmount newImmatureZerocoinBalance = getImmatureZerocoinBalance();
+    CAmount newEarnings = getEarnings();
+    CAmount newMasternodeEarnings = getMasternodeEarnings();
+    CAmount newStakeEarnings = getStakeEarnings();
     CAmount newWatchOnlyBalance = 0;
     CAmount newWatchUnconfBalance = 0;
     CAmount newWatchImmatureBalance = 0;
@@ -192,20 +212,25 @@ void WalletModel::checkBalanceChanged()
     if (cachedBalance != newBalance || cachedUnconfirmedBalance != newUnconfirmedBalance || cachedImmatureBalance != newImmatureBalance ||
         cachedZerocoinBalance != newZerocoinBalance || cachedUnconfirmedZerocoinBalance != newUnconfirmedZerocoinBalance || cachedImmatureZerocoinBalance != newImmatureZerocoinBalance ||
         cachedWatchOnlyBalance != newWatchOnlyBalance || cachedWatchUnconfBalance != newWatchUnconfBalance || cachedWatchImmatureBalance != newWatchImmatureBalance ||
-        cachedTxLocks != nCompleteTXLocks ) {
+        cachedTxLocks != nCompleteTXLocks 
+        || cachedEarnings != newEarnings || cachedMasternodeEarnings != newMasternodeEarnings || cachedStakeEarnings != newStakeEarnings) {
         cachedBalance = newBalance;
         cachedUnconfirmedBalance = newUnconfirmedBalance;
         cachedImmatureBalance = newImmatureBalance;
         cachedZerocoinBalance = newZerocoinBalance;
         cachedUnconfirmedZerocoinBalance = newUnconfirmedZerocoinBalance;
         cachedImmatureZerocoinBalance = newImmatureZerocoinBalance;
+        cachedEarnings = newEarnings;
+        cachedMasternodeEarnings = newMasternodeEarnings;
+        cachedStakeEarnings = newStakeEarnings;
         cachedTxLocks = nCompleteTXLocks;
         cachedWatchOnlyBalance = newWatchOnlyBalance;
         cachedWatchUnconfBalance = newWatchUnconfBalance;
         cachedWatchImmatureBalance = newWatchImmatureBalance;
         emit balanceChanged(newBalance, newUnconfirmedBalance, newImmatureBalance, 
                             newZerocoinBalance, newUnconfirmedZerocoinBalance, newImmatureZerocoinBalance,
-                            newWatchOnlyBalance, newWatchUnconfBalance, newWatchImmatureBalance);
+                            newWatchOnlyBalance, newWatchUnconfBalance, newWatchImmatureBalance,
+                            newEarnings, newMasternodeEarnings, newStakeEarnings);
     }
 }
 

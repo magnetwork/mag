@@ -40,7 +40,8 @@ public:
 public slots:
     void setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, 
                     const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance,
-                    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                    const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance, 
+                    const CAmount& earnings, const CAmount& masternodeEarnings, const CAmount& stakeEarnings);
 
 signals:
     void transactionClicked(const QModelIndex& index);
@@ -59,6 +60,9 @@ private:
     CAmount currentWatchOnlyBalance;
     CAmount currentWatchUnconfBalance;
     CAmount currentWatchImmatureBalance;
+    CAmount currentEarnings;
+    CAmount currentMasternodeEarnings;
+    CAmount currentStakeEarnings;
     int nDisplayUnit;
     void getPercentage(CAmount nTotalBalance, CAmount nZerocoinBalance, QString& sMAGPercentage, QString& szMAGPercentage);
 

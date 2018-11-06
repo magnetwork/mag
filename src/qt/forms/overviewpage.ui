@@ -246,10 +246,10 @@
                           </font>
                          </property>
                          <property name="toolTip">
-                          <string>Combined Balance (including unconfirmed and immature coins)</string>
+                          <string>Balances (including unconfirmed and immature coins)</string>
                          </property>
                          <property name="text">
-                          <string>Combined Balance</string>
+                          <string>Balances</string>
                          </property>
                         </widget>
                        </item>
@@ -852,7 +852,7 @@
                           </font>
                          </property>
                          <property name="text">
-                          <string>zMAG Balance</string>
+                          <string>      MAG Rewards</string>
                          </property>
                         </widget>
                        </item>
@@ -903,27 +903,28 @@
                         <number>12</number>
                        </property>
                        <item row="1" column="0">
-                        <widget class="QLabel" name="labelzBalanceMatureText">
+                        <widget class="QLabel" name="labelStakeRewardsText">
                          <property name="toolTip">
-                          <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zMAG are spendable.</string>
+                          <string>Amount of rewards received through staking (Proof-of-Stake).</string>
                          </property>
                          <property name="text">
-                          <string>Available:</string>
+                          <string>Stake Rewards:</string>
                          </property>
                         </widget>
                        </item>
                        <item row="1" column="1">
-                        <widget class="QLabel" name="labelzBalanceMature">
+                        <widget class="QLabel" name="labelStakeRewards">
                          <property name="font">
                           <font>
                            <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
+                         <property name="cursor">
+                          <cursorShape>IBeamCursor</cursorShape>
+                         </property>
                          <property name="toolTip">
-                          <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
-These zMAG are spendable.</string>
+                          <string>Amount of rewards received through staking (Proof-of-Stake).</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 MAG</string>
@@ -934,58 +935,28 @@ These zMAG are spendable.</string>
                         </widget>
                        </item>
                        <item row="2" column="0">
-                        <widget class="QLabel" name="labelzBalanceUnconfirmedText">
+                        <widget class="QLabel" name="labelMasternodeRewardsText">
                          <property name="toolTip">
-                          <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+                          <string>Amount of rewards received through masternodes.</string>
                          </property>
                          <property name="text">
-                          <string>Unconfirmed:</string>
+                          <string>Masternode Rewards:</string>
                          </property>
                         </widget>
                        </item>
                        <item row="2" column="1">
-                        <widget class="QLabel" name="labelzBalanceUnconfirmed">
+                        <widget class="QLabel" name="labelMasternodeRewards">
                          <property name="font">
                           <font>
                            <weight>75</weight>
                            <bold>true</bold>
                           </font>
                          </property>
-                         <property name="toolTip">
-                          <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
-                         </property>
-                         <property name="text">
-                          <string notr="true">0.000 000 00 MAG</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="0">
-                        <widget class="QLabel" name="labelzBalanceImmatureText">
-                         <property name="toolTip">
-                          <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
-                         </property>
-                         <property name="text">
-                          <string>Immature:</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="3" column="1">
-                        <widget class="QLabel" name="labelzBalanceImmature">
-                         <property name="font">
-                          <font>
-                           <weight>75</weight>
-                           <bold>true</bold>
-                          </font>
+                         <property name="cursor">
+                          <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+                          <string>Amount of rewards received through masternodes.</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 MAG</string>
@@ -998,7 +969,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                        <item row="4" column="0">
                         <widget class="QLabel" name="labelzBalanceText">
                          <property name="toolTip">
-                          <string>Your current zMAG balance, unconfirmed and immature zMAG included.</string>
+                          <string>Total amount of rewards including masternode and staking.</string>
                          </property>
                          <property name="text">
                           <string>Total:</string>
@@ -1017,7 +988,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Your current zMAG balance, unconfirmed and immature zMAG included.</string>
+                          <string>Total amount of rewards including masternode and staking.</string>
                          </property>
                          <property name="text">
                           <string notr="true">0.000 000 00 MAG</string>

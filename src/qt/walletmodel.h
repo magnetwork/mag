@@ -140,6 +140,9 @@ public:
     CAmount getZerocoinBalance() const;
     CAmount getUnconfirmedZerocoinBalance() const;
     CAmount getImmatureZerocoinBalance() const;
+    CAmount getEarnings() const;
+    CAmount getStakeEarnings() const;
+    CAmount getMasternodeEarnings() const;
     bool haveWatchOnly() const;
     CAmount getWatchBalance() const;
     CAmount getWatchUnconfirmedBalance() const;
@@ -244,6 +247,9 @@ private:
     CAmount cachedWatchOnlyBalance;
     CAmount cachedWatchUnconfBalance;
     CAmount cachedWatchImmatureBalance;
+    CAmount cachedEarnings;
+    CAmount cachedMasternodeEarnings;
+    CAmount cachedStakeEarnings;
     EncryptionStatus cachedEncryptionStatus;
     int cachedNumBlocks;
     int cachedTxLocks;
@@ -259,7 +265,8 @@ signals:
     // Signal that balance in wallet changed
     void balanceChanged(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, 
                         const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance, 
-                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance);
+                        const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance,
+                        const CAmount& earnings, const CAmount& masternodeEarnings, const CAmount& stakeEarnings);
 
     // Encryption status of wallet changed
     void encryptionStatusChanged(int status);
