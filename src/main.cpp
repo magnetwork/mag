@@ -117,6 +117,9 @@ static const int HalvingMonths = 12;
 static const int64_t RewardDecrease = 50 * CENT;
 static const int64_t FirstYearRewardMultiplier[HalvingMonths] = { 35 * COIN, 35 * COIN, 30 * COIN, 30 * COIN, 25 * COIN, 20 * COIN, 17 * COIN + 50 * CENT, 15 * COIN, 12 * COIN + 50 * CENT, 10 * COIN, 7 * COIN + 50 * CENT, 5 * COIN + 50 * CENT };
 
+// Masternode percentages.
+static const int64_t FirstYearMasternodesPercentage[HalvingMonths] = { 80, 80, 75, 75, 70, 70, 67, 67, 64, 64, 60, 60 };
+
 // Internal stuff
 namespace
 {
@@ -2023,7 +2026,13 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
     if (nHeight > Params().LAST_POW_BLOCK()) {
-        ret = blockValue / 2;
+        if (Params().NetworkID() == CBaseChainParams::MAIN || nHeight >= 3500 /* testnet and regnet */) {
+            const int currentPeriod = nHeight / 43800; // ((365 * 24 * 60) / 12)
+            ret = blockValue * FirstYearMasternodesPercentage[(currentPeriod < HalvingMonths) ? currentPeriod : HalvingMonths - 1] / 100;
+        }
+        else{
+            ret = blockValue / 2;
+        }
     }
     return ret;
 }

@@ -54,9 +54,7 @@ MerchantDialog::MerchantDialog(QWidget* parent) : QDialog(parent, Qt::WindowSyst
     QObject::connect(networkManager, &QNetworkAccessManager::finished,
         this, [=](QNetworkReply *reply) {
             if (reply->error()) {
-                QMessageBox::information(this, tr("Error"),
-                        reply->errorString(), QMessageBox::Ok,
-                        QMessageBox::Ok);
+                qDebug() << reply->errorString();
                 return;
             }
 
