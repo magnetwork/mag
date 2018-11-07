@@ -14,7 +14,7 @@ We also strongly believe that the incentivized two-tier model brought about by m
 <tr><td>Algo</td><td>X11</td><td></td></tr>
 <tr><td>Block Time</td><td>60 Seconds</td><td></td></tr>
 <tr><td>Difficulty Retargeting</td><td>Every Block</td><td></td></tr>
-<tr><td>Max Coin Supply (PoW Phase)</td><td>37,000,000 MAG</td><td>Completed</td></tr>
+<tr><td>Max Coin Supply (PoW Phase)</td><td>37,353,600 MAG</td><td>Completed</td></tr>
 <tr><td>Max Coin Supply (PoS Phase)</td><td>Infinite</td><td>Ongoing</td></tr>
 <tr><td>Premine</td><td>250 000 MAG*</td><td></td></tr>
 </table>
