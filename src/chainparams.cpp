@@ -190,7 +190,9 @@ public:
 
         vSeeds.push_back(CDNSSeedData("magnetwork.io", "satoshi.magnetwork.io"));   // Primary DNS Seeder
         vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));     // Secondary DNS Seeder
-        vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));         // MAG_TODO
+        vSeeds.push_back(CDNSSeedData("35.241.249.95", "35.241.249.95"));
+        vSeeds.push_back(CDNSSeedData("35.227.76.49", "35.227.76.49"));
+        vSeeds.push_back(CDNSSeedData("35.190.191.73", "35.190.191.73"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38); // Start with 'G'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 15); // Start with '7'
@@ -274,10 +276,12 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("magnetwork.io", "satoshi.magnetwork.io"));
-        vSeeds.push_back(CDNSSeedData("litemint.com", "satoshi.litemint.com"));
-        vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110")); // MAG_TODO
-
+        vSeeds.push_back(CDNSSeedData("magnetwork.io", "nakamoto.magnetwork.io"));
+        vSeeds.push_back(CDNSSeedData("litemint.com", "nakamoto.litemint.com"));
+        vSeeds.push_back(CDNSSeedData("35.241.249.95", "35.241.249.95"));
+        vSeeds.push_back(CDNSSeedData("35.227.76.49", "35.227.76.49"));
+        vSeeds.push_back(CDNSSeedData("35.190.191.73", "35.190.191.73"));
+        
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // Testnet mag addresses start with 'T'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);  // Testnet mag script addresses start with '5'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 135);     // Testnet private keys start with 'w'
