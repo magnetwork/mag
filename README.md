@@ -20,3 +20,19 @@ We also strongly believe that the incentivized two-tier model brought about by m
 </table>
 
 *250,000 MAG Premine was used to setup the initial masternodes on the network. The network now runs 30 masternodes in total.
+
+
+### Closed POW Period
+The swap reserve of 37,354,100 MAG was generated during first 211 blocks and mined through Proof-of-Work.
+<table>
+<th>Block Height</th><th>Coinbase</th>
+<tr><td>1-10</td><td>3,733,400</td></tr>
+<tr><td>11-211</td><td>100</td></tr>
+</table>
+
+### POS Rewards Breakdown
+
+For a detailed breakdown and 121 months projection you can [visit this link](https://docs.google.com/spreadsheets/d/1nJxOMXGQX_YGHA7oGkM_m1FENWnJj04LStO8Ee3fxwI/edit?usp=sharing).
+
+![Masternodes vs Coinbase](https://magnetwork.io/images/supply2.png)
+![Magnet Supply](https://magnetwork.io/images/supply1.png)
