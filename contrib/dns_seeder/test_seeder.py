@@ -2,7 +2,10 @@ import socket
 
 seeders = [
     'satoshi.magnetwork.io',
-    'satoshi.litemint.com'
+    'satoshi.litemint.com',
+    '35.241.249.95',
+    '35.227.76.49', 
+    '35.190.191.73'
 ]
 
 for seeder in seeders:

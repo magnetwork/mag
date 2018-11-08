@@ -7,7 +7,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/mag-project/mag-detached-sigs.git"
+- "url": "https://github.com/magnetwork/mag-detached-sigs.git"
   "dir": "signature"
 files:
 - "mag-osx-unsigned.tar.gz"

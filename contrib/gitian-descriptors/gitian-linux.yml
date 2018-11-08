@@ -1,5 +1,5 @@
 ---
-name: "mag-linux-3.2"
+name: "mag-linux-1.0"
 enable_cache: true
 suites:
 - "trusty"
@@ -29,7 +29,7 @@ packages:
 - "python"
 reference_datetime: "2015-06-01 00:00:00"
 remotes:
-- "url": "https://github.com/mag-project/mag.git"
+- "url": "https://github.com/magnetwork/mag.git"
   "dir": "mag"
 files: []
 script: |
