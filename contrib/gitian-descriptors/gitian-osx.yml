@@ -1,5 +1,5 @@
 ---
-name: "mag-osx-3.2"
+name: "mag-osx-1.0"
 enable_cache: true
 suites:
 - "trusty"
@@ -28,7 +28,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/mag-project/mag.git"
+- "url": "https://github.com/magnetwork/mag.git"
   "dir": "mag"
 files:
 - "MacOSX10.11.sdk.tar.gz"
