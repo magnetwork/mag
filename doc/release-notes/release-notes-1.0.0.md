@@ -1,11 +1,13 @@
-MAG Core version *1.0.0* (a fork from PIVx 3.1) is now available from:  <https://github.com/magnetwork/mag/releases>
+MAG Core version *1.0.0* is now available from:  <https://github.com/magnetwork/mag/releases>
 
 Please report bugs using the issue tracker at github: <https://github.com/magnetwork/mag/issues>
 
 Mandatory Update
 ==============
 
-- FIRST RELEASE
+MAG Core v1.0.0 is a mandatory update for all users on Magnet Network. This release contains a new core base (PIVx 3.1 fork) and major protocol changes that are not backwards compatible with any older versions of Magnet clients.
+
+Existing users have up till November 12, 2018 to Swap their coins on [Cryptopia Exchange](https://support.cryptopia.co.nz/csm?id=kb_article&sys_id=7eb0d4e8dbe1a780d7e096888a961908). If you have not done so and missed the deadline, please contact us _now_.
 
 How to Install / Upgrade
 ==============
@@ -34,7 +36,7 @@ frequently tested on them.
 Notable Changes
 ==============
 
-- FIRST RELEASE
+With this new client we are switching from a hybrid Proof-of-Work/Proof-of-Stake (POW/POS) network to a full Proof-Of-Stake based network. The reward distribution has been redesigned, detailed information and links are available in the repository README.md.
 
 User Experience
 --------------
@@ -53,33 +55,12 @@ A merchant tab, which lets you login to your [merchant dashboard](https://mercha
 Technical Changes
 --------------
 
-- FIRST RELEASE
+Due to the recent issues and vulnerabilities found on ZeroCoin protocol we will not be activating it for the launch. We do not rule out using obfuscation mechanisms in the future but only from well tested solutions as we cannot afford the maintenance overhead should any issue arise (exchanges, collaterals…) with our present resources/team/support available.
 
 *1.0.0* Change log
 --------------
 
-Detailed release notes follow. This overview includes changes that affect behavior, not code moves, refactors and string updates. For convenience in locating the code changes and accompanying discussion, both the pull request and git merge commit are mentioned.
-
-### Core Features
- - #001 `cb1632520` [Core] FIRST RELEASE
-
-### Build System
- - #001 `9071bfe2f` [Depends] FIRST RELEASE
- 
-### P2P Protocol and Network Code
- - #001 `61156def7` [Network] FIRST RELEASE
-
-### GUI
- - #001 `d9b23fe60` [Qt] FIRST RELEASE
- 
-### RPC/REST
- - #001 `772160b1b` [Wallet/RPC] FIRST RELEASE
-
-### Wallet
- - #001 `8c8350b59` [Wallet] FIRST RELEASE
- 
-### Miscellaneous
- - #001 `d2b017217` [Bug] FIRST RELEASE
+Initial release.
  
 ## Credits
 
