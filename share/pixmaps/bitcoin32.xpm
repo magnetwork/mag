@@ -1,5 +1,5 @@
 /* XPM */
-static char * C:\Users\Jonna\dev\mag\share\pixmaps\bitcoin32_xpm[] = {
+static char * bitcoin32[] = {
 "32 32 245 2",
 "  	c None",
 ". 	c #A1A2A3",
