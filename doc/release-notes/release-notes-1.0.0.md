@@ -45,7 +45,7 @@ User Experience
 
 The visual layout of the MAG Qt wallet has undergone a complete overhaul.
 The overview tab has been simplified greatly to display only balances that are active or relevant, also a reward section has been added.
-A merchant tab, which lets you login to your [merchant dashboard](https://merchant.magnetwork.io/) (can be turned off in the options).
+A merchant tab, which lets you login to your [merchant dashboard](https://merchant.magnetwork.io/) (can be turned off in the options) is also present.
 
 ### Wallet Options
 
