@@ -123,7 +123,6 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
         zmagObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
     zmagObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zMAGsupply", zmagObj));
 
     return result;
 }
@@ -323,18 +322,6 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zMAGsupply\" :\n"
-            "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zMAG denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zMAG denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zMAG denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zMAG denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zMAG denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zMAG denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zMAG denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zMAG denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zMAG denominations\n"
-            "  }\n"
             "}\n"
 
             "\nResult (for verbose=false):\n"
