@@ -4302,8 +4302,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <location line="-333"/>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
-        <translation>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</translation>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
+        <translation>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</translation>
     </message>
     <message>
         <location line="-13"/>
@@ -6361,8 +6361,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <location line="+11"/>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
-        <translation type="unfinished">Error: Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</translation>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible any more, only SOCKS5 proxies are supported.</source>
+        <translation type="unfinished">Error: Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible any more, only SOCKS5 proxies are supported.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -7061,8 +7061,8 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
     <message>
         <location line="+1"/>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
-        <translation type="unfinished">Invalid masternodeprivkey. Please see documenation.</translation>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
+        <translation type="unfinished">Invalid masternodeprivkey. Please see documentation.</translation>
     </message>
     <message>
         <location line="+1"/>

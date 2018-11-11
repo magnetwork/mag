@@ -84,7 +84,7 @@ QT_TRANSLATE_NOOP("mag-core", ""
 "Error: Unsupported argument -checklevel found. Checklevel must be level 4."),
 QT_TRANSLATE_NOOP("mag-core", ""
 "Error: Unsupported argument -socks found. Setting SOCKS version isn't "
-"possible anymore, only SOCKS5 proxies are supported."),
+"possible any more, only SOCKS5 proxies are supported."),
 QT_TRANSLATE_NOOP("mag-core", ""
 "Execute command when a relevant alert is received or we see a really long "
 "fork (%s in cmd is replaced by message)"),
@@ -348,7 +348,7 @@ QT_TRANSLATE_NOOP("mag-core", "Invalid amount for -paytxfee=<amount>: '%s' (must
 QT_TRANSLATE_NOOP("mag-core", "Invalid amount for -paytxfee=<amount>: '%s'"),
 QT_TRANSLATE_NOOP("mag-core", "Invalid amount for -reservebalance=<amount>"),
 QT_TRANSLATE_NOOP("mag-core", "Invalid amount"),
-QT_TRANSLATE_NOOP("mag-core", "Invalid masternodeprivkey. Please see documenation."),
+QT_TRANSLATE_NOOP("mag-core", "Invalid masternodeprivkey. Please see documentation."),
 QT_TRANSLATE_NOOP("mag-core", "Invalid netmask specified in -whitelist: '%s'"),
 QT_TRANSLATE_NOOP("mag-core", "Invalid port detected in masternode.conf"),
 QT_TRANSLATE_NOOP("mag-core", "Invalid private key."),

@@ -4492,7 +4492,7 @@ void run_ecdsa_der_parse(void) {
             int ret = 0;
             if (j > 0) {
                 damage_array(buffer, &buflen);
-                /* We don't know anything anymore about the DERness of the result */
+                /* We don't know anything any more about the DERness of the result */
                 certainly_der = 0;
                 certainly_not_der = 0;
             }
