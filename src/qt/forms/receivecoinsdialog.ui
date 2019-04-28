@@ -169,7 +169,7 @@
              <item row="5" column="0">
               <widget class="QLabel" name="label">
                <property name="toolTip">
-                <string>Your receiving address. You can copy and use it to receive coins on this wallet. A new one will be generated once it is used.</string>
+                <string>Your receiving address.</string>
                </property>
                <property name="text">
                 <string>&amp;Address:</string>
@@ -185,7 +185,7 @@
              <item row="5" column="2">
               <widget class="QLineEdit" name="reqAddress">
                <property name="readOnly">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
                <property name="minimumSize">
                 <size>
@@ -194,7 +194,7 @@
                 </size>
                </property>
                <property name="toolTip">
-                <string>Your receiving address. You can copy and use it to receive coins on this wallet. A new one will be generated once it is used.</string>
+                <string>Enter your receiving address here. Click Receiving Addresses button to find your receiving addresses or to create a new one.</string>
                </property>
               </widget>
              </item>
