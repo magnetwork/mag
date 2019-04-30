@@ -432,7 +432,7 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<CBl
     }
 
     // If the peer reorganized, our previous pindexLastCommonBlock may not be an ancestor
-    // of their current tip anymore. Go back enough to fix that.
+    // of their current tip any more. Go back enough to fix that.
     state->pindexLastCommonBlock = LastCommonAncestor(state->pindexLastCommonBlock, state->pindexBestKnownBlock);
     if (state->pindexLastCommonBlock == state->pindexBestKnownBlock)
         return;
@@ -3680,7 +3680,7 @@ bool InvalidateBlock(CValidationState& state, CBlockIndex* pindex)
         }
     }
 
-    // The resulting new best tip may not be in setBlockIndexCandidates anymore, so
+    // The resulting new best tip may not be in setBlockIndexCandidates any more, so
     // add them again.
     BlockMap::iterator it = mapBlockIndex.begin();
     while (it != mapBlockIndex.end()) {
@@ -4041,7 +4041,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         }
 
         // MAG
-        // It is entierly possible that we don't have enough data and this could fail
+        // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see

@@ -3361,7 +3361,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Verwijder alle lokale blockchain mappen zodat de portemonnee alles opnieuw kan hersynchroniseren.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>De onderstaande knoppen zullen de portemonnee opnieuw opstarten met command line opties om de portemonnee te repareren, problemen op te lossen met corrupte blockchain bestanden of ontbrekende/verouderde transacties.</translation>
     </message>
     <message>
@@ -4966,7 +4966,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Fout: de transactie is groter dan de maximaal toegestane transactiegrootte!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Fout: Niet ondersteund argument -socks gevonden. Het instellen van SOCKS versie is niet meer mogelijk, alleen SOCKS5 proxy's worden ondersteund.</translation>
     </message>
     <message>
@@ -5518,7 +5518,7 @@ Ofwel het munten van hogere denominaties (dus minder invoer nodig) of het te bes
         <translation>Ongeldige hoeveelheid</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation>Ongeldige masternodeprivkey. Zie documentatie.</translation>
     </message>
     <message>

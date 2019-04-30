@@ -720,7 +720,7 @@ boost::filesystem::path GetTempPath()
 #if BOOST_FILESYSTEM_VERSION == 3
     return boost::filesystem::temp_directory_path();
 #else
-    // TODO: remove when we don't support filesystem v2 anymore
+    // TODO: remove when we don't support filesystem v2 any more
     boost::filesystem::path path;
 #ifdef WIN32
     char pszPath[MAX_PATH] = "";

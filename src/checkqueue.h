@@ -54,7 +54,7 @@ private:
 
     /**
      * Number of verifications that haven't completed yet.
-     * This includes elements that are not anymore in queue, but still in
+     * This includes elements that are not any more in queue, but still in
      * worker's own batches.
      */
     unsigned int nTodo;

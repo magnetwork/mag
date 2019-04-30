@@ -3088,7 +3088,7 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>Cüzdan sıfırdan eşleştirmek için tüm yerel blok zincir klasörlerini siler.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Aşağıdaki düğmeler m-cüzdanı onarmak, bozuk blokaj dosyalarıyla ilgili sorunları çözmek veya eksik / eskimiş işlemler için komut satırı seçenekleriyle cüzdan yeniden başlatacaktır.</translation>
     </message>
     <message>
@@ -4549,7 +4549,7 @@ Ya daha yüksek mezhepleri daraltın (daha az girdi gereklidir) veya harcama mik
         <translation>Hata: Gelen bağlantıları dinleme başarısız oldu (dinleme dönmüş hata %s)</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Hata: Desteklenmeyen argüman-çorap bulundu. SOCKS versiyonunu ayarlamak artık mümkün değil, sadece SOCKS5 vekilleri destekleniyor.</translation>
     </message>
     <message>
