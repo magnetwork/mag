@@ -3317,7 +3317,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Raderar alla lokala blockchain mappar så att plånboken synkroniseras från start.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Knapparna nedanför kommer starta om plånboken med ett kommandorads val att reparera plånboken, lösa problem med korrupta blockchain filer eller saknade/föråldrade transaktioner.</translation>
     </message>
     <message>
@@ -4882,7 +4882,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Felmeddelande: Transaktionen är större än maximala tillåtna transaktions storleken!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Felmeddelande: Ohanterbart argument -socks hittad. Ställa in SOCKS version är inte möjligt längre, endast SOCKS5 proxies stöds.</translation>
     </message>
     <message>
@@ -5434,7 +5434,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>Ogiltig mängd</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation>ogiltig masternodeprivkey. Var vänlig se dokumentation.</translation>
     </message>
     <message>

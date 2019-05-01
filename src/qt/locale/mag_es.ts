@@ -3361,7 +3361,7 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
         <translation>Eliminar todos los directorios locales del blockchain y sincronizar el monedero desde el principio</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Los botones de más abajo reiniciarán el programa con comandos especiales para reparar el monedero, solucionar problemas con cadenas de bloques corruptas o buscar transacciones obsoletas o perdidas</translation>
     </message>
     <message>
@@ -4966,7 +4966,7 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
         <translation>Error: ¡La transacción es más grande que el tamaño máximo de transacción permitido!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Error: Argumento -socks no soportado. No se permite utilizar la versión SOCKS, solo proxies de SOCKS5 están soportados.</translation>
     </message>
     <message>
@@ -5518,7 +5518,7 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
         <translation>Cantidad incorrecta</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation>Valor de masternodeprivkey es inválido. Por favor ver la documentación.</translation>
     </message>
     <message>

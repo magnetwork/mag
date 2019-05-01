@@ -3352,7 +3352,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Löscht alle lokalen Blockchain-Ordner damit das Wallet sich von Grund auf synchronisiert.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Die unten aufgeführten Schaltflächen starten die Wallet mit Befehlszeilenoptionen, um die Wallet zu reparieren. Probleme mit beschädigten Blockchain-Dateien oder fehlenden/veralteten Transaktionen werden behoben.</translation>
     </message>
     <message>
@@ -4957,7 +4957,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Fehler: Die Transaktion ist größer als die maximal zulässige Transaktionsgröße!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Fehler: Nicht unterstütztes Argument -socks gefunden. Festlegen der SOCKS Version ist nicht mehr möglich, es werden nur noch SOCKS5-Proxys unterstützt.</translation>
     </message>
     <message>
@@ -5509,7 +5509,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
         <translation>Ungültiger Betrag</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation>Ungültiger privater Masternode-Schlüssel. Bitte sehen Sie in der Dokumentation nach.</translation>
     </message>
     <message>

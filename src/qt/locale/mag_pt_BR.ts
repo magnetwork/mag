@@ -2411,7 +2411,7 @@ https://www.transifex.com/mag-project/mag-project-translations</translation>
         <translation>Deleta todos os arquivos locais da blockchain para que a carteira sincronize do zero.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Os botões abaixo vão reiniciar a carteira com opções de linha de comando para reparar a carteira, corrigir problemas com os arquivos corrompidos da blockchain ou transações perdidas/obsoletas.</translation>
     </message>
     <message>
@@ -3660,7 +3660,7 @@ https://www.transifex.com/mag-project/mag-project-translations</translation>
         <translation>Deletar todas as transações da carteira e somente recuperar aquelas partes da blockchain através de -rescan na inicialização</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Erro: Argumento não suportado -socks encontrado. Definir a versão SOCKS não é mais possível, somente proxies SOCKS5 são suportados.</translation>
     </message>
     <message>
@@ -3984,7 +3984,7 @@ https://www.transifex.com/mag-project/mag-project-translations</translation>
         <translation>quantia inválida</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation>masternodeprivkey inválido. Favor conferir o manual.</translation>
     </message>
     <message>
