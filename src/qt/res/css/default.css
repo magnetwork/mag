@@ -53,6 +53,21 @@ QMenuBar::item:selected {
 background-color:#f8f6f6;
 }
 
+QTabBar::tab {
+background:#a0b5b4;
+color:#fff;
+}
+
+QTabBar::tab:selected {
+background: qlineargradient(y1:1, y2: 1, stop: 0 #8aa09f, stop: 0.1 #8aa09f, stop: 0.101 #7c8282, stop: 0.9 #7c8282, stop: 0.901 #8aa09f, stop: 1 #8aa09f);
+color:#fff;
+}
+
+QTabBar::tab:hover {
+background: qlineargradient(y1:1, y2: 1, stop: 0 #b0c1c0, stop: 0.1 #b0c1c0, stop: 0.101 #7c8282, stop: 0.9 #7c8282, stop: 0.901 #b0c1c0, stop: 1 #b0c1c0);
+color:#000;
+}
+
 QMenu {
 background-color:#f8f6f6;
 }
@@ -1742,6 +1757,17 @@ QWidget#MasternodeList .QFrame#frameList {
 background-color:#ffffff;
 }
 
+QWidget#MasternodeList .QFrame#frame_BG .QFrame#frame_Content {
+background-color:#ffffff;
+}
+
+QWidget#MasternodeList .QFrame#frame_BG .QFrame#frame_Content .QTabWidget#tabWidget .QWidget#tabMyMasternodes {
+background-color:#ffffff;
+}
+
+QWidget#MasternodeList .QFrame#frame_BG .QFrame#frame_Content .QTabWidget#tabWidget .QWidget#tabAllMasternodes {
+background-color:#ffffff;
+}
 
 /********************************* CALENDAR WIDGET **************************************/
 
