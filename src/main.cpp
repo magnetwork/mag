@@ -1767,7 +1767,13 @@ double ConvertBitsToDouble(unsigned int nBits)
 int64_t GetBlockValue(int nHeight)
 {
     int64_t nSubsidy = 0;
-    if (nHeight >= 0 && nHeight <= Params().LAST_POW_BLOCK()) {
+    if (nHeight >= Params().ThirdForkBlock()) {
+        // MAG is being swapped to Stellar.
+        // From this block on, all rewards are set to two satoshi.
+        // Both masternodes and staking wallet will receive 1 satoshi each.
+        return int64_t(SATOSHI * 2);
+    }
+    else if (nHeight >= 0 && nHeight <= Params().LAST_POW_BLOCK()) {
         if (nHeight < Params().SwapPoWBlocks()) {
             nSubsidy = Params().SwapCoinbaseValue();
         }
@@ -2026,7 +2032,10 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
     if (nHeight > Params().LAST_POW_BLOCK()) {
-        if (Params().NetworkID() == CBaseChainParams::MAIN || nHeight >= 3500 /* testnet and regnet */) {
+        if (nHeight >= Params().ThirdForkBlock()) {
+            ret = blockValue / 2;
+        }
+        else if (Params().NetworkID() == CBaseChainParams::MAIN || nHeight >= 3500 /* testnet and regnet */) {
             const int currentPeriod = nHeight / 43800; // ((365 * 24 * 60) / 12)
             ret = blockValue * FirstYearMasternodesPercentage[(currentPeriod < HalvingMonths) ? currentPeriod : HalvingMonths - 1] / 100;
         }

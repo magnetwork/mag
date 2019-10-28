@@ -143,6 +143,9 @@ public:
 
         nMaxMoneyOut = nSwapAmount;
 
+        // 3rd fork block number.
+        nThirdForkBlock = 545000;
+
         // Disabling zerocoin for now.
         nZerocoinStartHeight = std::numeric_limits<int>::max();
         nZerocoinStartTime = std::numeric_limits<int>::max();
