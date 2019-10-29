@@ -1,5 +1,5 @@
 ---
-name: "mag-linux-1.0"
+name: "mag-linux-2.0"
 enable_cache: true
 suites:
 - "trusty"
