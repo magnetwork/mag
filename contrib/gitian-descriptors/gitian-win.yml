@@ -1,5 +1,5 @@
 ---
-name: "mag-win-1.0"
+name: "mag-win-2.0"
 enable_cache: true
 suites:
 - "trusty"

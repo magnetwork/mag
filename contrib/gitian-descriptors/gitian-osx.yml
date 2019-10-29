@@ -1,5 +1,5 @@
 ---
-name: "mag-osx-1.0"
+name: "mag-osx-2.0"
 enable_cache: true
 suites:
 - "trusty"

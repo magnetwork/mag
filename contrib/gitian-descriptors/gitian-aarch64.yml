@@ -1,5 +1,5 @@
 ---
-name: "mag-aarch64-1.0"
+name: "mag-aarch64-2.0"
 enable_cache: true
 suites:
 - "xenial"
