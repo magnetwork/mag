@@ -257,7 +257,7 @@ void CBudgetManager::SubmitFinalBudget()
         return;
     }
 
-    //create the proposal incase we're the first to make it
+    //create the proposal in case we're the first to make it
     CFinalizedBudgetBroadcast finalizedBudgetBroadcast(strBudgetName, nBlockStart, vecTxBudgetPayments, txidCollateral);
 
     std::string strError = "";
@@ -423,7 +423,7 @@ void DumpBudgets()
             return;
         }
     }
-    LogPrint("mnbudget","Writting info to budget.dat...\n");
+    LogPrint("mnbudget","Writing info to budget.dat...\n");
     budgetdb.Write(budget);
 
     LogPrint("mnbudget","Budget dump finished  %dms\n", GetTimeMillis() - nStart);

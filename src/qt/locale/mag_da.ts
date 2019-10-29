@@ -3360,7 +3360,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Sletter alle lokale blockchain-mapper, så tegnebogen synkroniseres fra bunden.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
         <translation>Nedenstående knapper vil genstarte tegnebogen med kommandolinieparametre fr at reparere den, korrigere fejl og mangler i block-chain filerne, herunder også undersøge for manglende eller fejlagtige transaktioner</translation>
     </message>
     <message>
@@ -4966,7 +4966,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Fejl: Transaktionen er større end den maksimalt tilladte transaktionsstørrelse!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Fejl! Argumentet er ikke understøttet -socks found. Det er ikke muligt at bestemme hvilken SOCKS version længere. Kun SOCKS5 proxies understøttes.</translation>
     </message>
     <message>
@@ -5518,7 +5518,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
         <translation>Ugyldigt beløb</translation>
     </message>
     <message>
-        <source>Invalid masternodeprivkey. Please see documenation.</source>
+        <source>Invalid masternodeprivkey. Please see documentation.</source>
         <translation> Ugyldig masternodeprivkey. Se dokumentationen</translation>
     </message>
     <message>

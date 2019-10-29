@@ -168,7 +168,7 @@ void DumpMasternodePayments()
             return;
         }
     }
-    LogPrint("masternode","Writting info to mnpayments.dat...\n");
+    LogPrint("masternode","Writing info to mnpayments.dat...\n");
     paymentdb.Write(masternodePayments);
 
     LogPrint("masternode","Budget dump finished  %dms\n", GetTimeMillis() - nStart);

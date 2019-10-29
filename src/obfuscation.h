@@ -494,7 +494,7 @@ public:
     void GetDenominationsToString(int nDenom, std::string& strDenom);
 
     /// Get the denominations for a specific amount of mag.
-    int GetDenominationsByAmount(CAmount nAmount, int nDenomTarget = 0); // is not used anymore?
+    int GetDenominationsByAmount(CAmount nAmount, int nDenomTarget = 0); // is not used any more?
     int GetDenominationsByAmounts(std::vector<CAmount>& vecAmount);
 
     std::string GetMessageByID(int messageID);

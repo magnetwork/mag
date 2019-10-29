@@ -432,7 +432,7 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<CBl
     }
 
     // If the peer reorganized, our previous pindexLastCommonBlock may not be an ancestor
-    // of their current tip anymore. Go back enough to fix that.
+    // of their current tip any more. Go back enough to fix that.
     state->pindexLastCommonBlock = LastCommonAncestor(state->pindexLastCommonBlock, state->pindexBestKnownBlock);
     if (state->pindexLastCommonBlock == state->pindexBestKnownBlock)
         return;
@@ -1767,7 +1767,13 @@ double ConvertBitsToDouble(unsigned int nBits)
 int64_t GetBlockValue(int nHeight)
 {
     int64_t nSubsidy = 0;
-    if (nHeight >= 0 && nHeight <= Params().LAST_POW_BLOCK()) {
+    if (nHeight >= Params().ThirdForkBlock()) {
+        // MAG is being swapped to Stellar.
+        // From this block on, all rewards are set to two satoshi.
+        // Both masternodes and staking wallet will receive 1 satoshi each.
+        return int64_t(SATOSHI * 2);
+    }
+    else if (nHeight >= 0 && nHeight <= Params().LAST_POW_BLOCK()) {
         if (nHeight < Params().SwapPoWBlocks()) {
             nSubsidy = Params().SwapCoinbaseValue();
         }
@@ -2026,7 +2032,10 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 {
     int64_t ret = 0;
     if (nHeight > Params().LAST_POW_BLOCK()) {
-        if (Params().NetworkID() == CBaseChainParams::MAIN || nHeight >= 3500 /* testnet and regnet */) {
+        if (nHeight >= Params().ThirdForkBlock()) {
+            ret = blockValue / 2;
+        }
+        else if (Params().NetworkID() == CBaseChainParams::MAIN || nHeight >= 3500 /* testnet and regnet */) {
             const int currentPeriod = nHeight / 43800; // ((365 * 24 * 60) / 12)
             ret = blockValue * FirstYearMasternodesPercentage[(currentPeriod < HalvingMonths) ? currentPeriod : HalvingMonths - 1] / 100;
         }
@@ -3680,7 +3689,7 @@ bool InvalidateBlock(CValidationState& state, CBlockIndex* pindex)
         }
     }
 
-    // The resulting new best tip may not be in setBlockIndexCandidates anymore, so
+    // The resulting new best tip may not be in setBlockIndexCandidates any more, so
     // add them again.
     BlockMap::iterator it = mapBlockIndex.begin();
     while (it != mapBlockIndex.end()) {
@@ -4041,7 +4050,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         }
 
         // MAG
-        // It is entierly possible that we don't have enough data and this could fail
+        // It is entirely possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
         // The case also exists that the sending peer could not have enough data to see

@@ -228,7 +228,7 @@ int64_t CreateNewLock(CTransaction tx)
     int64_t nTxAge = 0;
     BOOST_REVERSE_FOREACH (CTxIn i, tx.vin) {
         nTxAge = GetInputAge(i);
-        if (nTxAge < 5) //1 less than the "send IX" gui requires, incase of a block propagating the network at the time
+        if (nTxAge < 5) //1 less than the "send IX" gui requires, in case of a block propagating the network at the time
         {
             LogPrintf("CreateNewLock - Transaction not found / too new: %d / %s\n", nTxAge, tx.GetHash().ToString().c_str());
             return 0;

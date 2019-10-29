@@ -29,4 +29,4 @@ The following new RPC commands are supported:
 * stop-many
 * outputs: list available collateral output transaction ids and corresponding collateral output indexes
 
-When using the multi masternode setup, it is advised to run the wallet with 'masternode=0' as it is not needed anymore.
+When using the multi masternode setup, it is advised to run the wallet with 'masternode=0' as it is not needed any more.

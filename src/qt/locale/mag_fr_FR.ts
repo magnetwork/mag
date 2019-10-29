@@ -3288,8 +3288,8 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
         <translation>Supprime tous les dossiers blockchain locaux afin que le portefeuille se synchronise à partir de zéro.</translation>
     </message>
     <message>
-        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
-        <translation>Les boutons ci-dessous vont redémarrer le portefeuille avec des options en ligne de commande pour réparer le portefeuille, résoudre les problèmes avec des fichiers blockhain corrompus ou des transactions manquantes / obsolètes.</translation>
+        <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockchain files or missing/obsolete transactions.</source>
+        <translation>Les boutons ci-dessous vont redémarrer le portefeuille avec des options en ligne de commande pour réparer le portefeuille, résoudre les problèmes avec des fichiers blockchain corrompus ou des transactions manquantes / obsolètes.</translation>
     </message>
     <message>
         <source>Wallet repair options.</source>
@@ -4421,7 +4421,7 @@ Soit monnayer des dénominations plus élevées (moins d'intrants sont nécessai
         <translation>Erreur: La transaction est plus grande que la taille maximum autorisée!</translation>
     </message>
     <message>
-        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
+        <source>Error: Unsupported argument -socks found. Setting SOCKS version isn't possible any more, only SOCKS5 proxies are supported.</source>
         <translation>Erreur: Argument -socks non pris en charge. Le paramétrage de SOCKS n'est plus possible, seul les proxies SOCKS5 sont supportés.</translation>
     </message>
     <message>

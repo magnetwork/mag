@@ -143,6 +143,9 @@ public:
 
         nMaxMoneyOut = nSwapAmount;
 
+        // 3rd fork block number.
+        nThirdForkBlock = 545000;
+
         // Disabling zerocoin for now.
         nZerocoinStartHeight = std::numeric_limits<int>::max();
         nZerocoinStartTime = std::numeric_limits<int>::max();
@@ -281,6 +284,23 @@ public:
         vSeeds.push_back(CDNSSeedData("35.241.249.95", "35.241.249.95"));
         vSeeds.push_back(CDNSSeedData("35.227.76.49", "35.227.76.49"));
         vSeeds.push_back(CDNSSeedData("35.190.191.73", "35.190.191.73"));
+        
+        // Mag official masternodes.
+        vSeeds.push_back(CDNSSeedData("104.238.145.183", "104.238.145.183"));
+        vSeeds.push_back(CDNSSeedData("208.167.245.110", "208.167.245.110"));
+        vSeeds.push_back(CDNSSeedData("209.250.224.172", "209.250.224.172"));
+        vSeeds.push_back(CDNSSeedData("207.148.7.57", "207.148.7.57"));
+        vSeeds.push_back(CDNSSeedData("45.32.201.0", "45.32.201.0"));
+        vSeeds.push_back(CDNSSeedData("45.77.159.2", "45.77.159.2"));        
+        vSeeds.push_back(CDNSSeedData("95.179.203.104", "95.179.203.104"));
+        vSeeds.push_back(CDNSSeedData("144.202.75.165", "144.202.75.165"));
+        vSeeds.push_back(CDNSSeedData("209.246.143.185", "209.246.143.185"));
+        vSeeds.push_back(CDNSSeedData("45.77.151.65", "45.77.151.65"));
+        vSeeds.push_back(CDNSSeedData("95.179.199.60", "95.179.199.60"));
+        vSeeds.push_back(CDNSSeedData("149.28.247.127", "149.28.247.127"));
+        vSeeds.push_back(CDNSSeedData("45.32.223.92", "45.32.223.92"));
+        vSeeds.push_back(CDNSSeedData("45.32.199.110", "45.32.199.110"));
+        vSeeds.push_back(CDNSSeedData("95.179.199.104", "95.179.199.104"));
         
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // Testnet mag addresses start with 'T'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);  // Testnet mag script addresses start with '5'
