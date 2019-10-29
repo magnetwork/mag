@@ -388,7 +388,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "\nExamples:\n" +
             HelpExampleCli("getblocktemplate", "") + HelpExampleRpc("getblocktemplate", ""));
 
-    if (chainActive.Tip()->nHeight >= lastPoWBlock)
+    if (chainActive.Tip()->nHeight > lastPoWBlock)
         throw JSONRPCError(RPC_OUT_OF_MEMORY, "No more mining, only Proof-of-Stake");
 
     LOCK(cs_main);
