@@ -3,6 +3,10 @@ MAG Core integration/staging repository
 
 [![Build Status](https://travis-ci.org/magnetwork/mag.svg?branch=master)](https://travis-ci.org/magnetwork/mag) [![GitHub version](https://badge.fury.io/gh/magnetwork%2Fmag.svg)](https://badge.fury.io/gh/magnetwork%2Fmag)
 
+**IMPORTANT**
+In **version 2.0** All coinbase rewards will be set to 1 SATOSHI from block **#545000**
+To continue staking after block 545000 it is recommended to swap your MAG to the MAG stellar anchor.
+
 Since 2017, our primary focus has been on promoting the usage of [MAG](https://magnetwork.io), an open source cryptocurrency, for real-world use cases while providing truly decentralized solutions to our users.
 
 To achieve this, we have built a suite of tools ([Magnet Merchant Tools](https://merchant.magnetwork.io)) for merchants to easily and securely transact without any middleman. These tools provide merchants with automated invoicing and seamless integration to the most common online shopping platforms (e.g. WooCommerce). Get setup with a merchant account in no time. It is free, peer-to-peer and secure.
